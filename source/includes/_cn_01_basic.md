@@ -26,7 +26,7 @@ API调用方式：
 
 全部使用UTF-8且只能使用UTF-8。
 
-示例：一个完整的GET请求：test
+示例：一个完整的GET请求：test1
 
 ```
 https://defiapi.876ex.com/v2/market/trades
