@@ -16,6 +16,8 @@ API调用方式：
 
 ## 返回参数
 
+
+
 如果API调用成功，返回200，内容总是JSON，且具有`Content-Type: application/json`。
 
 如果API调用失败，返回400，内容总是JSON，且具有`Content-Type: application/json`，格式为固定的Error，请参考[https://defiapi.876ex.com/v2/market/error](https://defiapi.876ex.com/v2/market/error)。
@@ -26,7 +28,7 @@ API调用方式：
 
 全部使用UTF-8且只能使用UTF-8。
 
-示例：一个完整的GET请求：test1
+示例：一个完整的GET请求:
 
 ```
 https://defiapi.876ex.com/v2/market/trades
