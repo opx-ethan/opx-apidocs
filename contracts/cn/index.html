@@ -349,12 +349,6 @@
                     <a href="#b57c398896" class="toc-h2 toc-link" data-title="返回错误响应">返回错误响应</a>
                   </li>
                   <li>
-                    <a href="#ff112f8d6f" class="toc-h2 toc-link" data-title="获取当前系统指数(合约)">获取当前系统指数(合约)</a>
-                  </li>
-                  <li>
-                    <a href="#6a306ebffa" class="toc-h2 toc-link" data-title="获取某个指数的最近历史值(合约)">获取某个指数的最近历史值(合约)</a>
-                  </li>
-                  <li>
                     <a href="#24" class="toc-h2 toc-link" data-title="获取24小时统计价格">获取24小时统计价格</a>
                   </li>
                   <li>
@@ -362,9 +356,6 @@
                   </li>
                   <li>
                     <a href="#51df0d5c04" class="toc-h2 toc-link" data-title="获取所有币币交易对统计价格">获取所有币币交易对统计价格</a>
-                  </li>
-                  <li>
-                    <a href="#777ab8d891" class="toc-h2 toc-link" data-title="获取所有合约交易对统计价格">获取所有合约交易对统计价格</a>
                   </li>
                   <li>
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="获取OrderBook（现货）">获取OrderBook（现货）</a>
@@ -523,7 +514,7 @@
 
 <ul>
 <li>请求方式：总是GET或POST；</li>
-<li>请求路径：总是以<code>/v2/</code>开头，例如<code>/v2/market/trades</code>；</li>
+<li>请求路径：总是以<code>/v2/</code>开头，例如<code>/v2/market/meta</code>；</li>
 </ul>
 <h2 id='1f9ac54b15'>请求参数</h2>
 <ul>
@@ -540,7 +531,7 @@
 <p>全部使用UTF-8且只能使用UTF-8。</p>
 
 <p>示例：一个完整的GET请求:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>https://defiapi.876ex.com/v2/market/trades
+<div class="highlight"><pre class="highlight plaintext"><code>https://defiapi.876ex.com/v2/market/meta
 </code></pre></div><h1 id='8ba46c43fe'>签名</h1>
 <p>API请求需要签名，以确认用户身份，并防止重放攻击。</p>
 
@@ -626,326 +617,145 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">系统支持的所有币种:</span><span class="w">
-    </span><span class="nl">"currencies"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">101</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">102</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1594957517343</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">103</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"BCH"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">105</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">106</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"USDS"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1594957305036</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">107</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1594957495878</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">701</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"ARM"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"spotsSymbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100105</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"openTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"derivative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"referencedIndexIdMap"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101105</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"openTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"derivative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"referencedIndexIdMap"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">可交易的所有现货币种:</span><span class="w">
-    </span><span class="nl">"spotsCurrencies"</span><span class="p">:[</span><span class="w">
-        </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"USDS"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ETH"</span><span class="w">
+    </span><span class="nl">"contractsCurrencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"contractsSymbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"marginSymbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100105</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"openTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"derivative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"referencedIndexIdMap"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101105</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"openTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"derivative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"referencedIndexIdMap"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nl">"zone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">可交易的所有期货合约币种:</span><span class="w">
-    </span><span class="nl">"contractsCurrencies"</span><span class="p">:[</span><span class="w">
-        </span><span class="s2">"BTC"</span><span class="w">
+    </span><span class="nl">"indexes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"spotsCurrencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"USDT"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">可交易的现货信息:</span><span class="w">
-    </span><span class="nl">"spotsSymbols"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">100105</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">101105</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"ETH_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">102105</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"LTC_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">1594972800000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">107105</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"EOS_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">1594972800000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">101100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"ETH_BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">1594972800000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="mf">0.00001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">102100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"LTC_BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">1594972800000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="mf">0.00001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">100106</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"BTC_USDS"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">1594972800000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="mf">0.0001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="s2">"USDS"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">101106</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"ETH_USDS"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">1594972800000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseName"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumIncrement"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseScale"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMinimumQuantity"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"baseMaximumQuantity"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteName"</span><span class="p">:</span><span class="s2">"USDS"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteMinimumIncrement"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quoteScale"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"supportMarginTrade"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"alwaysChargeQuote"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">可交易的合约信息:</span><span class="w">
-    </span><span class="nl">"contractsSymbols"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">1546300800000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"PERPETUAL"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"marginCurrency"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"inverse"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"liquidateBy"</span><span class="p">:</span><span class="s2">"INDEX_PRICE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"multiplier"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"minimumPriceIncrement"</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"priceStep"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"priceScale"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"maximumQuantityPerOrder"</span><span class="p">:</span><span class="mi">10000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"riskLimit"</span><span class="p">:{</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"initialMarginRate"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"maintenanceMarginRateStep"</span><span class="p">:</span><span class="mf">0.005</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"maxLeverage"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"riskLimitBase"</span><span class="p">:</span><span class="mi">100000</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"riskLimitStep"</span><span class="p">:</span><span class="mi">50000</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"maxRiskLimitSteps"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1546956010600</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nl">"settlementFeeRate"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"referencedIndexes"</span><span class="p">:{</span><span class="w">
-                </span><span class="nl">"SPOT"</span><span class="p">:</span><span class="mi">10006</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"FAIR"</span><span class="p">:</span><span class="mi">10009</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"PREMIUM_1M"</span><span class="p">:</span><span class="mi">10010</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"PREMIUM_AGGREGATE"</span><span class="p">:</span><span class="mi">10011</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"MAX_PREMIUM_RATE"</span><span class="p">:</span><span class="mi">10008</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"FUNDING_RATE_1M"</span><span class="p">:</span><span class="mi">10012</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"FUNDING_RATE_AGGREGATE"</span><span class="p">:</span><span class="mi">10013</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"LENDING_RATE_1D"</span><span class="p">:</span><span class="mi">10007</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">系统使用的指数信息:</span><span class="w">
-    </span><span class="nl">"indexes"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10006</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"BBTCUSD"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">2</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10007</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"XBTCUSDDAILYRATE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10008</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"XBTCUSDMAXPIRATE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10009</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"XBTCUSDFAIR"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10010</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"XBTCUSDPI"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10011</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"XBTCUSDPI8H"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10012</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"XBTCUSDFR"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10013</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"XBTCUSDFR8H"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10014</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"BTCINS1H"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">10015</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"BTCINS1D"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"startTime"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"endTime"</span><span class="p">:</span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"scale"</span><span class="p">:</span><span class="mi">6</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">系统使用的风险等级信息:</span><span class="w">
-    </span><span class="nl">"riskLimits"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"initialMarginRate"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"maintenanceMarginRateStep"</span><span class="p">:</span><span class="mf">0.005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"maxLeverage"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"riskLimitBase"</span><span class="p">:</span><span class="mi">100000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"riskLimitStep"</span><span class="p">:</span><span class="mi">50000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"maxRiskLimitSteps"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1546956010600</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"riskLimits"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"currencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"derivative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"iconUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"depositOpenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawOpenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"derivative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"iconUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"depositOpenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawOpenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"derivative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"iconUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"depositOpenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"withdrawOpenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='4b9a55b0b9'>获取时间</h2>
 <p>API描述：获取服务器当前时间，以毫秒为单位。</p>
@@ -959,8 +769,11 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">系统当前时间，以毫秒为单位:</span><span class="w">
-    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563326294936</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1691203331433</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='1cc2931276'>获取汇率</h2>
 <p>API描述：获取当前市场汇率。</p>
@@ -974,36 +787,36 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">基准汇率:</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">转换汇率:</span><span class="w">
     </span><span class="nl">"tos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"CAD"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"CNY"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"HKD"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"JPY"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"KRW"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"RUB"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"TWD"</span><span class="w">
+      </span><span class="s2">"AUD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CAD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CNY"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"GBP"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"HKD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"JPY"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"KRW"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RUB"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TWD"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">当前汇率:</span><span class="w">
     </span><span class="nl">"exchanges"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"USD_GBP"</span><span class="p">:</span><span class="mf">0.78886</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_CAD"</span><span class="p">:</span><span class="mf">1.35191</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_JPY"</span><span class="p">:</span><span class="mf">107.206</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_HKD"</span><span class="p">:</span><span class="mf">7.75152</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_TWD"</span><span class="p">:</span><span class="mf">29.423</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_EUR"</span><span class="p">:</span><span class="mf">0.8726</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_RUB"</span><span class="p">:</span><span class="mf">71.3516</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_KRW"</span><span class="p">:</span><span class="mf">1197.88</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_SGD"</span><span class="p">:</span><span class="mf">1.38853</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_AUD"</span><span class="p">:</span><span class="mf">1.42376</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"USD_CNY"</span><span class="p">:</span><span class="mf">6.9836</span><span class="w">
+      </span><span class="nl">"USD_GBP"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.77924</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_CAD"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.31809</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_JPY"</span><span class="p">:</span><span class="w"> </span><span class="mf">142.258</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_HKD"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.7977</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_TWD"</span><span class="p">:</span><span class="w"> </span><span class="mf">31.474</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_EUR"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9092</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_KRW"</span><span class="p">:</span><span class="w"> </span><span class="mf">1277.9</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_SGD"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3294</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_AUD"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.48881</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"USD_CNY"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.1435</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='03372bcd75'>获取系统错误代码</h2>
 <p>API描述：获取系统定义的全部错误代码。</p>
@@ -1017,20 +830,23 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="nl">"错误代码常量"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"语言"</span><span class="err">：</span><span class="s2">"错误描述模版..."</span><span class="p">}</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"ACCOUNT_INVALID"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: Account {{account}} invalid"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"子账户 {{account}} 不合法"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"ACCOUNT_NO_ENOUGH_AVAILABLE"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{0} 账户缺少足够的余额"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: {{0}} has no enough available"</span><span class="w">
+      </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: {{currency}} has no enough available"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{currency}} 账户缺少足够的余额"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"ACCOUNT_NO_ENOUGH_BALANCE"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"余额不足"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: no enough balance"</span><span class="w">
+      </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: no enough balance"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"余额不足"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"ACCOUNT_TRANSFER_FAILED"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"转账失败"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: transfer failed"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">...</span><span class="w">
+    </span><span class="err">.......</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='b57c398896'>返回错误响应</h2>
 <p>API描述：返回一个错误响应，以便调试客户端错误处理代码。</p>
@@ -1044,108 +860,14 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">标准错误响应:</span><span class="w">
-    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEST_API_ERROR"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello, this is a test api message"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='ff112f8d6f'>获取当前系统指数(合约)</h2>
-<p>API描述：获取当前所有指数的最新值。</p>
-
-<p>API路径：GET <a href="https://defiapi.876ex.com/v2/market/indexes">/v2/market/indexes</a></p>
-
-<p>API请求参数：</p>
-
-<ul>
-<li>无</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"INDEX"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"indexName"</span><span class="p">:</span><span class="s2">"XBTCUSDDAILYRATE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="mi">1546272000000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
-                </span><span class="mf">0.0003</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">价格</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"INDEX"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"indexName"</span><span class="p">:</span><span class="s2">"XBTCUSDPI"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="mi">1546272000000</span><span class="p">,</span><span class="w">
-                </span><span class="mf">0.0005</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-                </span><span class="err">...</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>某些指数是价格，例如<code>BBTCUSD</code>是比特币现货加权指数，某些指数是计算的数值，例如<code>XBTCUSDPI</code>是当前比特币对美元溢价率。</p>
-<h2 id='6a306ebffa'>获取某个指数的最近历史值(合约)</h2>
-<p>API描述：获取某个指数的最近历史值。</p>
-
-<p>API路径：GET /v2/market/indexes/:index_name</p>
-
-<p>API示例：GET <a href="https://defiapi.876ex.com/v2/market/indexes/BBTCUSD">/v2/market/indexes/BBTCUSD</a></p>
-
-<p>API请求参数(Path Param)：</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>index_name</strong></td>
-<td><strong>path</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>指数名称，注意以<code>.</code>开头，例如<code>BBTCUSD</code></td>
-</tr>
-</tbody></table>
-
-<p>API请求参数(Request Param)：</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th style="text-align: left">类型</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>start</strong></td>
-<td style="text-align: left"><strong>long</strong></td>
-<td><strong>选填</strong><br/>起始时间戳，单位ms</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>end</strong></td>
-<td style="text-align: left"><strong>long</strong></td>
-<td><strong>选填</strong><br/>结束时间戳，单位ms</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>limit</strong></td>
-<td style="text-align: left"><strong>long</strong></td>
-<td><strong>选填</strong><br/>获取BAR的数量，默认1000，最大1000</td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="err">按时间从近到远排序:</span><span class="w"> </span><span class="p">[</span><span class="err">时间戳</span><span class="p">,</span><span class="w"> </span><span class="err">值</span><span class="p">]</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1564815660000</span><span class="p">,</span><span class="w"> </span><span class="mf">10801.32</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1564815600000</span><span class="p">,</span><span class="w"> </span><span class="mf">10799.67</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1564815540000</span><span class="p">,</span><span class="w"> </span><span class="mf">10794.05</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1564815480000</span><span class="p">,</span><span class="w"> </span><span class="mf">10797.47</span><span class="p">],</span><span class="w">
-        </span><span class="err">...</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEST_API_ERROR"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello, this is a test api message"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='24'>获取24小时统计价格</h2>
-<p>API描述：获取某个交易对的最近24小时统计价格。接口不区分现货、合约。</p>
+<p>API描述：获取某个交易对的最近24小时统计价格.</p>
 
 <p>API路径：GET /v2/market/ticker/:symbol_name</p>
 
@@ -1165,21 +887,33 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <td><strong>path</strong></td>
 <td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
 </tr>
+<tr>
+<td style="text-align: left">*<em>limit      *</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>非必填</strong><br> 默认200</td>
+</tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mi">1595988420000</span><span class="p">,</span><span class="w">
-        </span><span class="mi">11171</span><span class="p">,</span><span class="w">
-        </span><span class="mf">11212.2</span><span class="p">,</span><span class="w">
-        </span><span class="mf">9953.5</span><span class="p">,</span><span class="w">
-        </span><span class="mf">10905.1</span><span class="p">,</span><span class="w">
-        </span><span class="mf">2142.3818</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1194721"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595988438053</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">390</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">[</span><span class="w">
+            </span><span class="mi">1690878910379</span><span class="p">,</span><span class="w">
+            </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="mf">29424.72</span><span class="p">,</span><span class="w">
+            </span><span class="mf">2.0</span><span class="p">,</span><span class="w">
+            </span><span class="mf">58849.44</span><span class="p">,</span><span class="w">
+            </span><span class="mi">0</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：</p>
@@ -1190,7 +924,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p><code>[时间戳，开盘价，最高价，最低价，收盘价，成交量]</code></p>
 <h2 id='28a0acbc2b'>获取所有统计价格</h2>
-<p>API描述：获取所有交易对的最近24小时统计价格。接口不区分现货、合约。</p>
+<p>API描述：获取所有交易对的最近24小时统计价格.</p>
 
 <p>API路径：GET /v2/market/all-ticker</p>
 
@@ -1203,24 +937,45 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRICE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="mi">1595988420000</span><span class="p">,</span><span class="w">
-                </span><span class="mi">11171</span><span class="p">,</span><span class="w">
-                </span><span class="mf">11212.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">9953.5</span><span class="p">,</span><span class="w">
-                </span><span class="mf">10895.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">2142.2028</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1194709"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595988427765</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="mi">1690878900000</span><span class="p">,</span><span class="w">
+          </span><span class="mf">29424.71</span><span class="p">,</span><span class="w">
+          </span><span class="mf">29434.1</span><span class="p">,</span><span class="w">
+          </span><span class="mf">29421.71</span><span class="p">,</span><span class="w">
+          </span><span class="mf">29421.71</span><span class="p">,</span><span class="w">
+          </span><span class="mf">36.1</span><span class="p">,</span><span class="w">
+          </span><span class="mf">1062231.209</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">390</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690878910379</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="mi">1690794720000</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">329</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690794732387</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='51df0d5c04'>获取所有币币交易对统计价格</h2>
+</span></code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>- data数据格式：[timestamp, open, high, low, close, volume, amount]
+</code></pre></div><h2 id='51df0d5c04'>获取所有币币交易对统计价格</h2>
 <p>API描述：获取所有币币交易对的最近24小时统计价格。</p>
 
 <p>API路径：GET /v2/market/spots/all-ticker</p>
@@ -1234,53 +989,42 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRICE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="mi">1595988420000</span><span class="p">,</span><span class="w">
-                </span><span class="mi">11171</span><span class="p">,</span><span class="w">
-                </span><span class="mf">11212.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">9953.5</span><span class="p">,</span><span class="w">
-                </span><span class="mf">10895.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">2142.2028</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1194709"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595988427765</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="mi">1690878900000</span><span class="p">,</span><span class="w">
+          </span><span class="mf">29424.71</span><span class="p">,</span><span class="w">
+          </span><span class="mf">29434.1</span><span class="p">,</span><span class="w">
+          </span><span class="mf">29421.71</span><span class="p">,</span><span class="w">
+          </span><span class="mf">29421.71</span><span class="p">,</span><span class="w">
+          </span><span class="mf">36.1</span><span class="p">,</span><span class="w">
+          </span><span class="mf">1062231.209</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">390</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690878910379</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="mi">1690794720000</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="mi">1800</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">329</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690794732387</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='777ab8d891'>获取所有合约交易对统计价格</h2>
-<p>API描述：获取所有合约交易对的最近24小时统计价格。</p>
-
-<p>API路径：GET /v2/market/contracts/all-ticker</p>
-
-<p>API示例：GET <a href="https://defiapi.876ex.com/v2/market/contracts/all-ticker">/v2/market/contracts/all-ticker</a></p>
-
-<p>API请求参数：</p>
-
-<ul>
-<li>无</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRICE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="mi">1595988420000</span><span class="p">,</span><span class="w">
-                </span><span class="mi">11171</span><span class="p">,</span><span class="w">
-                </span><span class="mf">11212.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">9953.5</span><span class="p">,</span><span class="w">
-                </span><span class="mf">10895.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">2142.2028</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1194709"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595988427765</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='orderbook'>获取OrderBook（现货）</h2>
 <p>API描述：获取某个交易对的最近OrderBook。</p>
@@ -1303,23 +1047,26 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <td><strong>path</strong></td>
 <td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
 </tr>
+<tr>
+<td style="text-align: left"><strong>depth</strong></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>非必填</strong><br> 默认25档 最大支持150档</td>
+</tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">最近成交价</span><span class="w">
-    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9179.33</span><span class="p">,</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">序列ID</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">40519</span><span class="p">,</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">买盘</span><span class="w">
-    </span><span class="nl">"buyOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">[</span><span class="mf">9175.08</span><span class="p">,</span><span class="mf">0.35</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mf">9168.73</span><span class="p">,</span><span class="mf">0.54</span><span class="p">]</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">卖盘</span><span class="w">
-    </span><span class="nl">"sellOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">[</span><span class="mf">9179.33</span><span class="p">,</span><span class="mf">0.76</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mf">9181.37</span><span class="p">,</span><span class="mf">0.97</span><span class="p">]</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100105</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">29421.71</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sellOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"buyOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">390</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1691216889145</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='orderbook-2'>获取OrderBook（合约）</h2>
 <p>API描述：获取某个交易对的最近OrderBook。</p>
