@@ -7,7 +7,7 @@ API使用HTTPS。
 API调用方式：
 
 - 请求方式：总是GET或POST；
-- 请求路径：总是以`/v2/`开头，例如`/v2/market/trades`；
+- 请求路径：总是以`/v2/`开头，例如`/v2/market/meta`；
 
 ## 请求参数
 
@@ -31,5 +31,5 @@ API调用方式：
 示例：一个完整的GET请求:
 
 ```
-https://defiapi.876ex.com/v2/market/trades
+https://defiapi.876ex.com/v2/market/meta
 ```
