@@ -6,7 +6,7 @@ WebSocket API是指连接到WebSocket后推送的数据。
 
 ## 连接信息
 
-WebSocket只支持wss协议，地址是wss://defiwss.876ex.com/v2/market/notification
+WebSocket只支持wss协议，地址是ws://13.112.107.117:8081/v2/market/notification
 
 ## 用户认证
 
@@ -14,13 +14,17 @@ WebSocket只支持wss协议，地址是wss://defiwss.876ex.com/v2/market/notific
 
 以API方式请求wss token，可以访问如下API地址（需要API签名）：
 
-用户API请求：GET https://defiapi.876ex.com/v2/users/notification/token
+用户API请求：GET http://13.112.107.117/v2/users/notification/token
 
 如果用户未登录，返回400错误，如果用户已登录，返回包含Token的JSON如下：
 
 ```json
 {
-    "result": "d3p0ZGZFMDAwMuD"
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "token": "SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ="
+  }
 }
 ```
 
@@ -31,7 +35,7 @@ WebSocket只支持wss协议，地址是wss://defiwss.876ex.com/v2/market/notific
 将获取的token作为参数附加到wss连接：
 
 ```
-wss://uniwss.876ex.com/v2/market/notification?token=d3p0ZGZFMDAwMuD
+ws://13.112.107.117:8081/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
 ```
 
 WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服务器验证用户成功，推送消息如下：
@@ -50,8 +54,8 @@ WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服�
 
 ```json
 {
-    "type":"CONNECTED",
-    "message":"connected as anonymous user"
+  "type": "CONNECTED",
+  "message": "connected as anonymous user"
 }
 ```
 
@@ -88,7 +92,6 @@ socket.send(JSON.stringify({
 5. BAR.{MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}.{symbol_name}
 6. SPOTS.ORDER_STATUS_CHANGED
 7. SPOTS.ORDER_MATCHED
-10. INDEX.{index_name}
 
 目前服务端返回消息的type list
 
@@ -100,7 +103,6 @@ socket.send(JSON.stringify({
 6. BAR
 7. ORDER_STATUS_CHANGED
 8. ORDER_MATCHED
-11. INDEX
 
 ##  取消订阅
 
@@ -281,7 +283,7 @@ socket.onmessage = function (event) {
             [6705.5, 0.9],
             [6706, 1.3],
             [6706.5, 0.1]
-        }
+          ]
     }
 }
 ```
