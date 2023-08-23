@@ -18,18 +18,22 @@ API响应样例:
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     "BTC": [
-        493.81081575, // 现货可用
-        5.9716 // 现货冻结
+      199997.999,
+      0
     ],
     "ETH": [
-        10.9967000,
-        0
+      200000,
+      0
     ],
     "USDT": [
-        9937490.3587324070000000,
-        0E-16
+      200000,
+      0
     ]
+  }
 }
 ```
 
@@ -54,9 +58,13 @@ API响应样例:
 
 ```json
 {
-    "taker": 0.000300000000000000, // taker费率
-    "maker": 0.000100000000000000, // maker费率
-    "timestamp": 1595297714823 // 时间戳
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taker": 0.002,
+    "maker": 0.001,
+    "timestamp": 1692788103022
+  }
 }
 ```
 
@@ -89,40 +97,13 @@ API响应样例：订单信息
 
 ```json
 {
-    "id": 12345, // 订单ID
-  	"clientOrderId": "clientOrderId", // 用户自定义OrderId
-    "sequenceId": 23456, // 序列ID
-    "type": "LIMIT", // 订单类型
-    "direction": "LONG", // 订单方向
-    "price": 7123.5, // 订单限价
-    "quantity": 1.02, // 订单数量
-    "unfilledQuantity": 1.0, // 订单尚未成交数量
-    "fillPrice": 7102.2, // 订单成交均价，仅作为展示使用
-    "status": "PARTICIAL_FILLED", // 订单状态
-    "makerFeeRate": -0.001, // 作为Maker的费率
-    "takerFeeRate": 0.002, // 作为Taker的费率
-    "chargeQuote": true, // 是否总收取Quote作为手续费
-    "marginTrade": false, // 是否是杠杆交易(目前未开启)
-    "fee": 7.1022, // 累积收取的手续费总额
-    "createdAt": 1564558783608, // 创建时间
-    "updatedAt": 1564558783608, // 最后更新时间
-    "baseCurrencyId": 100, // 交易币种ID
-    "quoteCurrencyId": 103, // 计价币种ID
-	  "chargeQuote": true, // 是否只用计价货币收取手续费
-	  "features": 0, // 订单特性码
-    "userAndAccount": { // 用户与子账户信息
-        "userId": 10004,
-        "accountId": 0
-    }
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "orderId": 169927679934528
+  }
 }
 ```
-
-API错误响应：
-
-- `PARAMETER_INVALID`: 参数错误
-- `ACCOUNT_NO_ENOUGH_AVAILABLE`: 没有足够的可用余额
-- `ORDER_EXCEEDED`: 活动订单数量超过了限制
-- `PRICE_EXCEEDED`: 价格超出限制：买入价过高或卖出价过低
 
 ## 撤单
 
@@ -204,9 +185,11 @@ API响应样例：
 
 ```json
 {
-    "results": {
-        "cancelled" : 10 // 成功取消的订单数量
-    }
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "cancelled": 0 // 成功取消订单的数量
+  }
 }
 ```
 
@@ -234,45 +217,44 @@ API响应样例：订单详细信息
 
 ```json
 {
-    "id": 3527072007,
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": 169927679934528,
+    "clientOrderId": null,
     "features": 0,
-    "price": 9132.5,
-    "fee": 0,
+    "price": 8400.000000000000000000,
+    "fee": 0.000000000000000000,
     "fillPrice": 0.0,
     "marginTrade": false,
     "chargeQuote": false,
-    "quantity": 0.1803,
-    "unfilledQuantity": 0.1803,
-    "makerFeeRate": 0.000100000000000000,
-    "takerFeeRate": 0.000200000000000000,
+    "quantity": 0.010000000000000000,
+    "unfilledQuantity": 0.010000000000000000,
+    "makerFeeRate": 0.001000000000000000,
+    "takerFeeRate": 0.002000000000000000,
     "type": "LIMIT",
-    "status": "PENDING",
+    "status": "FULLY_CANCELLED",
     "direction": "LONG",
     "triggerDirection": "LONG",
-    "triggerOn": 0,
-    "trailingBasePrice": 0,
-    "trailingDistance": 0,
-    "createdAt": 1595253140322,
-    "updatedAt": 1595253140322,
+    "triggerOn": 0.000000000000000000,
+    "trailingBasePrice": 0.000000000000000000,
+    "trailingDistance": 0.000000000000000000,
+    "createdAt": 1692788158183,
+    "updatedAt": 1692788229144,
     "symbol": "BTC_USDT",
     "trailing": false
+  }
 }
 ```
 
 OrderStatus：订单状态说明
 
-- STOP_PENDING：正在等待触发的Stop单；
 - PENDING：正在等待成交的活动单；
 - FAILED：订单执行失败（无足够保证金等原因），最终状态；
-- STOP_FAILED：Stop订单触发后执行失败（无足够保证金等原因），最终状态；
 - FULLY_FILLED：全部成交，最终状态；
 - PARTIAL_FILLED：已部分成交；
 - PARTIAL_CANCELLED：部分成交后被用户取消，最终状态；
-- STOP_CANCELLED：Stop订单尚未触发就被用户取消，最终状态；
 - FULLY_CANCELLED：订单尚未成交就被用户取消，最终状态；
-
-说明：目前未启用止盈止损（Stop Order）订单，所以STOP_*状态不会出现在系统中。
-
 
 
 ## 查询订单详情（通过自定义订单ID）
@@ -290,50 +272,8 @@ API请求参数(Path Param)：
 
 
 ```
-API响应样例：订单详细信息
+API响应样例：订单详细信息 同上
 ```
-
-```json
-{
-    "id": 3527072007,
-  	"clientOrderId": "clientOrderId", // 用户自定义OrderId
-    "features": 0,
-    "price": 9132.5,
-    "fee": 0,
-    "fillPrice": 0.0,
-    "marginTrade": false,
-    "chargeQuote": false,
-    "quantity": 0.1803,
-    "unfilledQuantity": 0.1803,
-    "makerFeeRate": 0.000100000000000000,
-    "takerFeeRate": 0.000200000000000000,
-    "type": "LIMIT",
-    "status": "PENDING",
-    "direction": "LONG",
-    "triggerDirection": "LONG",
-    "triggerOn": 0,
-    "trailingBasePrice": 0,
-    "trailingDistance": 0,
-    "createdAt": 1595253140322,
-    "updatedAt": 1595253140322,
-    "symbol": "BTC_USDT",
-    "trailing": false
-}
-```
-
-OrderStatus：订单状态说明
-
-- STOP_PENDING：正在等待触发的Stop单；
-- PENDING：正在等待成交的活动单；
-- FAILED：订单执行失败（无足够保证金等原因），最终状态；
-- STOP_FAILED：Stop订单触发后执行失败（无足够保证金等原因），最终状态；
-- FULLY_FILLED：全部成交，最终状态；
-- PARTIAL_FILLED：已部分成交；
-- PARTIAL_CANCELLED：部分成交后被用户取消，最终状态；
-- STOP_CANCELLED：Stop订单尚未触发就被用户取消，最终状态；
-- FULLY_CANCELLED：订单尚未成交就被用户取消，最终状态；
-
-说明：目前未启用止盈止损（Stop Order）订单，所以STOP_*状态不会出现在系统中。
 
 
 
@@ -358,23 +298,19 @@ API响应样例：订单成交详细信息，按时间排序
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     "results": [
-        {
-            "taker": true, // 是否是taker
-            "price": 9801.5, // 成交价
-            "quantity": 120, // 成交数量
-            "fee": 0.0012845, // 手续费
-            "createdAt": 1564558783608 // 创建时间
-        },
-        {
-            "taker": false, // 是否是taker
-            "price": 9801.0, // 成交价
-            "quantity": 26, // 成交数量
-            "fee": -0.0006175, // 手续费，负数表示反佣
-            "createdAt": 1564558790832 // 创建时间
-        },
-        ...
+      {
+        "taker": true,
+        "price": 29421.710000000000000000,
+        "quantity": 0.010000000000000000,
+        "fee": 0.000020000000000000,
+        "createdAt": 1692788965761
+      }
     ]
+  }
 }
 ```
 
@@ -403,27 +339,49 @@ API响应样例：订单成交详细信息，按时间排序
 
 ```json
 {
-    "range": "202007",
-    "hasMore": true,
-    "nextOffsetId": 1039651,
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "range": "202308",
+    "hasMore": false,
+    "nextOffsetId": 0,
     "results": [
-        {
-            "id": 1039652,
-            "orderId": 4059332007,
-            "symbol": "BTC_USDT",
-            "sequenceId": 405933,
-            "direction": "LONG",
-            "type": "TAKER",
-            "matchPrice": 9182.900000000000000000,
-            "matchQuantity": 0.010200000000000000,
-            "orderStatusAfterClearing": "FULLY_FILLED",
-            "orderUnfilledQuantityAfterClearing": 0E-18,
-            "feeCurrency": "BTC",
-            "fee": 0.000002040000000000,
-            "rate": 0.000200000000000000,
-            "createdAt": 1595300043398
-        }
+      {
+        "id": 10066,
+        "orderId": 169934449541184,
+        "userId": 2,
+        "symbol": "BTC_USDT",
+        "sequenceId": 401,
+        "direction": "LONG",
+        "type": "TAKER",
+        "matchPrice": 29421.710000000000000000,
+        "matchQuantity": 0.010000000000000000,
+        "orderStatusAfterClearing": "FULLY_FILLED",
+        "orderUnfilledQuantityAfterClearing": 0.000000000000000000,
+        "feeCurrency": "BTC",
+        "fee": 0.000020000000000000,
+        "rate": 0.002000000000000000,
+        "createdAt": 1692788965761
+      },
+      {
+        "id": 10065,
+        "orderId": 169934365655104,
+        "userId": 2,
+        "symbol": "BTC_USDT",
+        "sequenceId": 401,
+        "direction": "SHORT",
+        "type": "MAKER",
+        "matchPrice": 29421.710000000000000000,
+        "matchQuantity": 0.010000000000000000,
+        "orderStatusAfterClearing": "FULLY_FILLED",
+        "orderUnfilledQuantityAfterClearing": 0.000000000000000000,
+        "feeCurrency": "USDT",
+        "fee": 0.294217100000000000,
+        "rate": 0.001000000000000000,
+        "createdAt": 1692788965761
+      }
     ]
+  }
 }
 ```
 
@@ -443,56 +401,37 @@ API响应样例：订单详细信息，按时间排序
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     "results": [
-        {
-            "id": 3400192007,
-            "features": 0,
-            "price": 9133.2,
-            "fee": 0.0000196200000000000000,
-            "fillPrice": 9133.199999999999,
-            "marginTrade": false,
-            "chargeQuote": false,
-            "quantity": 0.7944,
-            "unfilledQuantity": 0.5982,
-            "makerFeeRate": 0.000100000000000000,
-            "takerFeeRate": 0.000200000000000000,
-            "type": "LIMIT",
-            "status": "PARTIAL_FILLED",
-            "direction": "LONG",
-            "triggerDirection": "LONG",
-            "triggerOn": 0,
-            "trailingBasePrice": 0,
-            "trailingDistance": 0,
-            "createdAt": 1595242057585,
-            "updatedAt": 1595299047936,
-            "symbol": "BTC_USDT",
-            "trailing": false
-        },
-        {
-            "id": 3527072007,
-            "features": 0,
-            "price": 9132.5,
-            "fee": 0,
-            "fillPrice": 0.0,
-            "marginTrade": false,
-            "chargeQuote": false,
-            "quantity": 0.1803,
-            "unfilledQuantity": 0.1803,
-            "makerFeeRate": 0.000100000000000000,
-            "takerFeeRate": 0.000200000000000000,
-            "type": "LIMIT",
-            "status": "PENDING",
-            "direction": "LONG",
-            "triggerDirection": "LONG",
-            "triggerOn": 0,
-            "trailingBasePrice": 0,
-            "trailingDistance": 0,
-            "createdAt": 1595253140322,
-            "updatedAt": 1595253140322,
-            "symbol": "BTC_USDT",
-            "trailing": false
-        }
+      {
+        "id": 169932469829696,
+        "clientOrderId": null,
+        "features": 0,
+        "price": 8400.00,
+        "fee": 0,
+        "fillPrice": 0.0,
+        "marginTrade": false,
+        "chargeQuote": false,
+        "quantity": 0.01,
+        "unfilledQuantity": 0.01,
+        "makerFeeRate": 0.001,
+        "takerFeeRate": 0.002,
+        "type": "LIMIT",
+        "status": "PENDING",
+        "direction": "LONG",
+        "triggerDirection": "LONG",
+        "triggerOn": 0,
+        "trailingBasePrice": 0,
+        "trailingDistance": 0,
+        "createdAt": 1692788729879,
+        "updatedAt": 1692788729879,
+        "symbol": "BTC_USDT",
+        "trailing": false
+      }
     ]
+  }
 }
 ```
 
@@ -516,56 +455,37 @@ API响应样例：订单详细信息，按时间排序
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     "results": [
-        {
-            "id": 3400192007,
-            "features": 0,
-            "price": 9133.2,
-            "fee": 0.0000196200000000000000,
-            "fillPrice": 9133.199999999999,
-            "marginTrade": false,
-            "chargeQuote": false,
-            "quantity": 0.7944,
-            "unfilledQuantity": 0.5982,
-            "makerFeeRate": 0.000100000000000000,
-            "takerFeeRate": 0.000200000000000000,
-            "type": "LIMIT",
-            "status": "PARTIAL_FILLED",
-            "direction": "LONG",
-            "triggerDirection": "LONG",
-            "triggerOn": 0,
-            "trailingBasePrice": 0,
-            "trailingDistance": 0,
-            "createdAt": 1595242057585,
-            "updatedAt": 1595299047936,
-            "symbol": "BTC_USDT",
-            "trailing": false
-        },
-        {
-            "id": 3527072007,
-            "features": 0,
-            "price": 9132.5,
-            "fee": 0,
-            "fillPrice": 0.0,
-            "marginTrade": false,
-            "chargeQuote": false,
-            "quantity": 0.1803,
-            "unfilledQuantity": 0.1803,
-            "makerFeeRate": 0.000100000000000000,
-            "takerFeeRate": 0.000200000000000000,
-            "type": "LIMIT",
-            "status": "PENDING",
-            "direction": "LONG",
-            "triggerDirection": "LONG",
-            "triggerOn": 0,
-            "trailingBasePrice": 0,
-            "trailingDistance": 0,
-            "createdAt": 1595253140322,
-            "updatedAt": 1595253140322,
-            "symbol": "BTC_USDT",
-            "trailing": false
-        }
+      {
+        "id": 169932469829696,
+        "clientOrderId": null,
+        "features": 0,
+        "price": 8400.00,
+        "fee": 0,
+        "fillPrice": 0.0,
+        "marginTrade": false,
+        "chargeQuote": false,
+        "quantity": 0.01,
+        "unfilledQuantity": 0.01,
+        "makerFeeRate": 0.001,
+        "takerFeeRate": 0.002,
+        "type": "LIMIT",
+        "status": "PENDING",
+        "direction": "LONG",
+        "triggerDirection": "LONG",
+        "triggerOn": 0,
+        "trailingBasePrice": 0,
+        "trailingDistance": 0,
+        "createdAt": 1692788729879,
+        "updatedAt": 1692788729879,
+        "symbol": "BTC_USDT",
+        "trailing": false
+      }
     ]
+  }
 }
 ```
 
@@ -590,59 +510,40 @@ API响应样例：订单详细信息，按时间排序
 
 ```json
 {
-    "range": "202007",
-    "hasMore": true,
-    "nextOffsetId": 4045822007,
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "range": "202308",
+    "hasMore": false,
+    "nextOffsetId": 0,
     "results": [
-        {
-            "id": 4045852007,
-            "features": 8,
-            "price": 10091.500000000000000000,
-            "fee": 0.000002300000000000,
-            "fillPrice": 9181.6,
-            "marginTrade": false,
-            "chargeQuote": false,
-            "quantity": 0.011500000000000000,
-            "unfilledQuantity": 0E-18,
-            "makerFeeRate": 0.000100000000000000,
-            "takerFeeRate": 0.000200000000000000,
-            "type": "MARKET",
-            "status": "FULLY_FILLED",
-            "direction": "LONG",
-            "triggerDirection": "LONG",
-            "triggerOn": 0E-18,
-            "trailingBasePrice": 0E-18,
-            "trailingDistance": 0E-18,
-            "createdAt": 1595298848680,
-            "updatedAt": 1595298848680,
-            "symbol": "BTC_USDT",
-            "trailing": false
-        },
-        {
-            "id": 4045842007,
-            "features": 8,
-            "price": 8263.500000000000000000,
-            "fee": 0.021100430000000000,
-            "fillPrice": 9174.1,
-            "marginTrade": false,
-            "chargeQuote": false,
-            "quantity": 0.011500000000000000,
-            "unfilledQuantity": 0E-18,
-            "makerFeeRate": 0.000100000000000000,
-            "takerFeeRate": 0.000200000000000000,
-            "type": "MARKET",
-            "status": "FULLY_FILLED",
-            "direction": "SHORT",
-            "triggerDirection": "LONG",
-            "triggerOn": 0E-18,
-            "trailingBasePrice": 0E-18,
-            "trailingDistance": 0E-18,
-            "createdAt": 1595298848635,
-            "updatedAt": 1595298848635,
-            "symbol": "BTC_USDT",
-            "trailing": false
-        }
+      {
+        "id": 169927679934528,
+        "clientOrderId": null,
+        "features": 0,
+        "price": 8400.000000000000000000,
+        "fee": 0.000000000000000000,
+        "fillPrice": 0.0,
+        "marginTrade": false,
+        "chargeQuote": false,
+        "quantity": 0.010000000000000000,
+        "unfilledQuantity": 0.010000000000000000,
+        "makerFeeRate": 0.001000000000000000,
+        "takerFeeRate": 0.002000000000000000,
+        "type": "LIMIT",
+        "status": "FULLY_CANCELLED",
+        "direction": "LONG",
+        "triggerDirection": "LONG",
+        "triggerOn": 0.000000000000000000,
+        "trailingBasePrice": 0.000000000000000000,
+        "trailingDistance": 0.000000000000000000,
+        "createdAt": 1692788158183,
+        "updatedAt": 1692788229144,
+        "symbol": "BTC_USDT",
+        "trailing": false
+      }
     ]
+  }
 }
 ```
 
@@ -667,13 +568,17 @@ API请求参数：JSON Object
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     "transferFrom": "SPOTS",
     "transferTo": "WALLET",
-    "userId": 122017,
-    "amount": 0.001,
-    "transferId": "CT0001b881ea800042",
+    "userId": 2,
+    "amount": 2,
+    "transferId": "CT00009a8e52800040",
     "currencyName": "BTC",
     "currencyId": 100
+  }
 }
 ```
 
