@@ -493,7 +493,7 @@
         <h1 id='46ae2946a2'>基础介绍</h1>
 <p>API使用HTTPS。</p>
 
-<p>针对终端用户的API域名是<code>defiapi.876ex.com</code>。</p>
+<p>针对终端用户的API - Ip是<code>http://13.112.107.117</code>。</p>
 
 <p>API调用方式：</p>
 
@@ -503,20 +503,20 @@
 </ul>
 <h2 id='1f9ac54b15'>请求参数</h2>
 <ul>
-<li>GET请求以URL参数传入，例如：<a href="https://defiapi.876ex.com/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590">https://defiapi.876ex.com/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590</a></li>
+<li>GET请求以URL参数传入，例如：<a href="http://13.112.107.117/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590">http://13.112.107.117/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590</a></li>
 <li>POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json</li>
 </ul>
 <h2 id='70bdef7e25'>返回参数</h2>
 <p>如果API调用成功，返回200，内容总是JSON，且具有<code>Content-Type: application/json</code>。</p>
 
-<p>如果API调用失败，返回400，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="https://defiapi.876ex.com/v2/market/error">https://defiapi.876ex.com/v2/market/error</a>。</p>
+<p>如果API调用失败，返回400，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="http://13.112.107.117/v2/market/error">http://13.112.107.117/v2/market/error</a>。</p>
 
 <p>如果API超过了业务频率限制，返回429，无内容，可根据返回头<code>X-RateLimit-Biz-Limit</code>、&quot;<code>X-RateLimit-Biz-Burst</code>和<code>X-RateLimit-Biz-Remaining</code>获取限频次数。</p>
 <h2 id='d91b75440f'>字符编码</h2>
 <p>全部使用UTF-8且只能使用UTF-8。</p>
 
 <p>示例：一个完整的GET请求:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>https://defiapi.876ex.com/v2/market/meta
+<div class="highlight"><pre class="highlight plaintext"><code>http://13.112.107.117/v2/market/meta
 </code></pre></div><h1 id='8ba46c43fe'>签名</h1>
 <p>API请求需要签名，以确认用户身份，并防止重放攻击。</p>
 
