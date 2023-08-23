@@ -474,12 +474,6 @@
                   <li>
                     <a href="#a103e79385" class="toc-h2 toc-link" data-title="资产中心划转到币币账户">资产中心划转到币币账户</a>
                   </li>
-                  <li>
-                    <a href="#cf75433c8e" class="toc-h2 toc-link" data-title="资产中心划转到合约账户">资产中心划转到合约账户</a>
-                  </li>
-                  <li>
-                    <a href="#526cba3f02" class="toc-h2 toc-link" data-title="资产中心划转到币信账户">资产中心划转到币信账户</a>
-                  </li>
               </ul>
           </li>
       </ul>
@@ -2419,7 +2413,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>是否需要认证：需要</li>
 </ul>
 <h1 id='20ff2c8e16'>资产中心</h1>
-<p>资产中心API可用于获取资产中心账户余额、与币币账户、合约账户划转。</p>
+<p>资产中心API可用于获取资产中心账户余额、与币币账户。</p>
 <h2 id='4d03e44027'>获取资产中心账户余额</h2>
 <p>API描述：查询用户资产中心账户余额。</p>
 
@@ -2429,22 +2423,22 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>返回：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"USDS"</span><span class="p">:[</span><span class="w">
-        </span><span class="mi">5024</span><span class="p">,</span><span class="w">
-        </span><span class="mi">0</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"BTC"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">99800004</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"BTC"</span><span class="p">:[</span><span class="w">
-        </span><span class="mf">45.591</span><span class="p">,</span><span class="w">
-        </span><span class="mi">0</span><span class="w">
+    </span><span class="nl">"ETH"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">99800000</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ETH"</span><span class="p">:[</span><span class="w">
-        </span><span class="mf">5094.859925211325094096</span><span class="p">,</span><span class="w">
-        </span><span class="mi">0</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"USDT"</span><span class="p">:[</span><span class="w">
-        </span><span class="mf">32934.951247512771511524</span><span class="p">,</span><span class="w">
-        </span><span class="mi">0</span><span class="w">
+    </span><span class="nl">"USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">99800000</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='a103e79385'>资产中心划转到币币账户</h2>
 <p>API描述：从资产中心划转资产到币币账户</p>
@@ -2479,131 +2473,29 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>返回：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10650</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38dea7c5108f498a8c4036214d02cf66"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10008</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38dea7c5108f498a8c4036214d02cf71"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"targetAddress"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"transferType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTERNAL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"transferFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASSETS"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"transferTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOTS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">122017</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nl">"userTargetId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.000000000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">200000.000000000000000000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"confirm"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"txid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9f083fddfefbce8316ad6fcb380f9b3f0eaa3a9c"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603352591724</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603352591853</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='cf75433c8e'>资产中心划转到合约账户</h2>
-<p>API描述：从资产中心划转资产到合约账户</p>
-
-<p>API路径：POST /v2/assets/contracts/transfer/out</p>
-
-<p>API请求参数：JSON Object</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>sourceId</strong></td>
-<td><strong>string</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>请求ID，唯一标识</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>currency</strong></td>
-<td><strong>string</strong></td>
-<td style="text-align: left"><strong>必填</strong><br/>currency名称，如“BTC”</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>amount</strong></td>
-<td><strong>decimal</strong></td>
-<td style="text-align: left"><strong>必填</strong><br/>划转数量</td>
-</tr>
-</tbody></table>
-
-<p>返回：</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10650</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38dea7c5108f498a8c4036214d02cf66"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"targetAddress"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"transferType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTERNAL"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"transferFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASSETS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"transferTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTRACTS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">122017</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"userTargetId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.000000000000000000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"confirm"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"txid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9f083fddfefbce8316ad6fcb380f9b3f0eaa3a9c"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603352591724</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603352591853</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='526cba3f02'>资产中心划转到币信账户</h2>
-<p>API描述：从资产中心划转资产到币信账户</p>
-
-<p>API路径：POST /v2/assets/bx/transfer/out</p>
-
-<p>API请求参数：JSON Object</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>sourceId</strong></td>
-<td><strong>string</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>请求ID，唯一标识</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>currency</strong></td>
-<td><strong>string</strong></td>
-<td style="text-align: left"><strong>必填</strong><br/>currency名称，如“BTC”</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>amount</strong></td>
-<td><strong>decimal</strong></td>
-<td style="text-align: left"><strong>必填</strong><br/>划转数量</td>
-</tr>
-</tbody></table>
-
-<p>返回：</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10693</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0AA68271-F8C8-4503-8F8E-BC1CE813625D"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"targetAddress"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"transferType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BX_INTERNAL"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"transferFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASSETS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"transferTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BX"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">121397</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"userTargetId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c32ceda0a68141ce9169f1bef12c1b08"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"confirm"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"txid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dbeff52709cb6dc9b06d14442132aa87fe0c41f5"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604038628500</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604038628500</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
+    </span><span class="nl">"sign"</span><span class="p">:</span><span class="w"> </span><span class="s2">"465e5fcefa6b38d462d59390fd6d2c6c0fa89fd1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690379350114</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690379350215</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
       </div>
