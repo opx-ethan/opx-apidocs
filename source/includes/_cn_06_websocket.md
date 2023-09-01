@@ -92,6 +92,7 @@ socket.send(JSON.stringify({
 5. BAR.{MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}.{symbol_name}
 6. SPOTS.ORDER_STATUS_CHANGED
 7. SPOTS.ORDER_MATCHED
+8. BBO.{symbol_name}
 
 目前服务端返回消息的type list
 
@@ -101,8 +102,9 @@ socket.send(JSON.stringify({
 4. TICKER
 5. ALL-TICKER
 6. BAR
-7. ORDER_STATUS_CHANGED
-8. ORDER_MATCHED
+7. SPOTS.ORDER_STATUS_CHANGED
+8. SPOTS.ORDER_MATCHED
+9. BBO
 
 ##  取消订阅
 
@@ -176,9 +178,20 @@ socket.onmessage = function (event) {
 
 ```json
 {
-    "type" : "TICKER",
-    "symbol" : "BTC_USDT",
-    "data" : [1576656730000, 7243.67, 7966.01, 7201.9, 7226.5, 450.3]
+  "type": "TICKER",
+  "symbol": "BTC_USDT",
+  "data": [
+    1693574940000,
+    27152.7,
+    27205.2,
+    25739.24,
+    26031.52,
+    133609.57,
+    3504106410.368,
+    -0.041291657919839
+  ],
+  "sequenceId": 794752,
+  "ts": 1693574966918
 }
 ```
 
@@ -207,38 +220,42 @@ socket.onmessage = function (event) {
 
 ```json
 {
-    "type":"ALL-TICKER",
-    "data":[
-        {
-            "type":"TICKER",
-            "symbol":"BTC_USDT",
-            "data":[
-                1596445560000,
-                11299.5,
-                12111.9,
-                10940,
-                11223.2,
-                2052.8359
-            ],
-            "sequenceId":"2268111",
-            "ts":1596445607162
-        },
-        {
-            "type":"TICKER",
-            "symbol":"ETH_USDT",
-            "data":[
-                1596445560000,
-                376.9,
-                388.3,
-                354.5,
-                382.9,
-                2196.89,
-                67.2
-            ],
-            "sequenceId":"2268112",
-            "ts":1596445607746
-        }
-    ]
+  "type": "ALL-TICKER",
+  "timestamp": 1693575018105,
+  "data": [
+    {
+      "type": "TICKER",
+      "symbol": "BTC_USDT",
+      "data": [
+        1693575000000,
+        27163.76,
+        27205.2,
+        25739.24,
+        26032.64,
+        133643.71,
+        3504875464.9052,
+        -0.041640774325793
+      ],
+      "sequenceId": 794931,
+      "ts": 1693575016899
+    },
+    {
+      "type": "TICKER",
+      "symbol": "ETH_USDT",
+      "data": [
+        1693575000000,
+        1705.54,
+        1708.4,
+        1632.28,
+        1644.84,
+        66586.38,
+        110361200.734,
+        -0.035589901145678
+      ],
+      "sequenceId": 794932,
+      "ts": 1693575016912
+    }
+  ]
 }
 ```
 
@@ -250,11 +267,19 @@ socket.onmessage = function (event) {
 
 ```json
 {
-    "type" : "BAR",
-    "symbol" : "BTC_USDT",
-    "resolution" : "MIN",
-    "sequenceId" : 24918,
-    "data" : [1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004,2.1]
+  "type": "BAR",
+  "symbol": "BTC_USDT",
+  "resolution": "MIN15",
+  "sequenceId": 795097,
+  "data": [
+    1693575000000,
+    26032.34,
+    26051.16,
+    26030.78,
+    26050.7,
+    234.92,
+    6116784.4598
+  ]
 }
 ```
 说明：
@@ -262,29 +287,58 @@ socket.onmessage = function (event) {
 - 消息类型：bar
 - 数据格式：[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004] --- [timestamp, open, high, low, close, amount,volume]
 
-## Websocket OrderBook消息
 
-服务器以固定频率推送OrderBook消息如下：
+## Websocket BBO消息
+
+服务器以固定频率推送BBO消息如下：
 
 ```json
 {
-    "type": "ORDERBOOK",
+  "type": "BBO",
+  "symbol": "BTC_USDT",
+  "data": {
+    "sequenceId": 793396,
+    "timestamp": 1693574535172,
+    "bidPrice": 26039.02,
+    "bidVolume": 7.24,
+    "askPrice": 26039.06,
+    "askVolume": 0.42
+  }
+}
+```
+
+
+
+
+## Websocket OrderBook消息
+
+服务器以固定频率增量推送OrderBook消息如下：
+
+```json
+{
+  "type": "orderbook",
+  "symbol": "BTC_USDT",
+  "lastSequenceId": 793372,
+  "sequenceId": 793376,
+  "data": {
+    "sellOrders": [
+      [
+        26039.3,
+        2
+      ]
+    ],
+    "direction": "LONG",
     "symbol": "BTC_USDT",
-    "sequenceId": 1130,
-    "data": {
-        "price": 6705.5,
-        "buyOrders": [
-            [6704.5, 0.9],
-            [6704, 1.1],
-            [6703.5, 1.0],
-            [6702.5, 0.3]
-        ],
-        "sellOrders": [
-            [6705.5, 0.9],
-            [6706, 1.3],
-            [6706.5, 0.1]
-          ]
-    }
+    "price": 26038.9,
+    "buyOrders": [
+      [
+        26035.62,
+        3.99
+      ]
+    ],
+    "symbolId": 100105,
+    "sequenceId": 793376
+  }
 }
 ```
 
@@ -293,6 +347,7 @@ socket.onmessage = function (event) {
 - 消息类型：orderbook
 - 是否需要订阅：需要
 - 深度数据格式：`[price, amount]`
+- 需要自己维护订单薄，按照sequenceId递增更新订单薄
 
 ## Websocket Tick消息
 
@@ -300,13 +355,43 @@ socket.onmessage = function (event) {
 
 ```json
 {
-    "type": "TICK",
-    "symbol": "BTC_USDT",
-    "sequenceId": 1131,
-    "data": [
-        [1576743711096, 1, 7200.4, 0.11, 0],
-        [1576743711096, 1, 7200.5, 0.24, 0],
+  "type": "TICK",
+  "symbol": "BTC_USDT",
+  "sequenceId": 794534,
+  "data": [
+    [
+      1693574906883,
+      1,
+      26033.940000,
+      2.000000,
+      52067.880000,
+      0
+    ],
+    [
+      1693574906883,
+      1,
+      26033.960000,
+      0.950000,
+      24732.262000,
+      0
+    ],
+    [
+      1693574906883,
+      1,
+      26034.100000,
+      2.360000,
+      61440.476000,
+      0
+    ],
+    [
+      1693574906883,
+      1,
+      26034.180000,
+      1.540000,
+      40092.637200,
+      0
     ]
+  ]
 }
 ```
 
@@ -323,59 +408,31 @@ socket.onmessage = function (event) {
   - flag: 0=普通成交（后续增加爆仓标志）
 
 
-
-## Websocket Index消息
-
-服务器会定期推送Index消息
-
-订阅：
-
-```json
-{
-    "action":"subscribe",
-    "topic":"INDEX.BBTCUSD"
-}
-```
-
-消息格式:
-
-```json
-{
-    "type":"INDEX",
-    "indexName":"BBTCUSD",
-    "data":[
-        1596620650000, // 时间戳
-        11373.57 // 指数值
-    ]
-}
-```
-
-
-
 ## 订单成交消息
 
 当用户订单成交后，获得订单成交消息：
 
 ```json
 {
-    "type":"ORDER_MATCHED",
-    "sequenceId":627926,
-    "data":{
-        "symbol":"BTC_USDT",
-        "orderId":6279262007,
-        "price":9514.7,
-        "matchType":"TAKER",
-        "fee":0.055090113,
-        "matchedQuantity":0.0193,
-        "direction":"SHORT"
-    },
-    "userId":123
+  "type": "SPOTS.ORDER_MATCHED",
+  "sequenceId": 795536,
+  "data": {
+    "symbol": "BTC_USDT",
+    "orderId": 176530000970114,
+    "matchType": "TAKER",
+    "price": 26029.42,
+    "fee": 0.0032,
+    "matchedQuantity": 1.6,
+    "feeCurrency": "BTC",
+    "direction": "LONG",
+    "updatedAt": 1693575216940
+  }
 }
 ```
 
 说明：
 
-- 消息类型：`ORDER_MATCHED`
+- 消息类型：`SPOTS.ORDER_MATCHED`
 - 是否需要认证：需要
 
 
@@ -386,26 +443,38 @@ socket.onmessage = function (event) {
 
 ```json
 {
-    "userId":123,
-    "type":"ORDER_STATUS_CHANGED",
-    "data":{
-        "symbol":"BTC_USDT",
-        "quantity":0.8443,
-        "unfilledQuantity":0.3315,
-        "orderId":6290602007,
-        "price":9509.8,
-        "fee":-0.00005128,
-        "type":"LIMIT",
-        "fillPrice":9509.8,
-        "direction":"LONG",
-        "status":"PARTIAL_FILLED"
-    },
-    "sequenceId":629078
+  "type": "SPOTS.ORDER_STATUS_CHANGED",
+  "sequenceId": 795290,
+  "data": {
+    "symbol": "BTC_USDT",
+    "triggerOn": 0,
+    "quantity": 4.54,
+    "makerFeeRate": 0.001,
+    "trailingDistance": 0,
+    "fee": 118.1781068,
+    "marginTrade": false,
+    "chargeQuote": false,
+    "trailingBasePrice": 0,
+    "type": "LIMIT",
+    "fillPrice": 26030.42,
+    "triggerDirection": "LONG",
+    "createdAt": 1693575145085,
+    "features": 2,
+    "trailing": false,
+    "unfilledQuantity": 0.0,
+    "price": 26030.42,
+    "takerFeeRate": 0.002,
+    "failReason": "",
+    "id": 176529405378626,
+    "direction": "SHORT",
+    "status": "FULLY_FILLED",
+    "updatedAt": 1693575146891
+  }
 }
 ```
 
 说明：
 
-- 消息类型：`ORDER_STATUS_CHANGED`
+- 消息类型：`SPOTS.ORDER_STATUS_CHANGED`
 - 是否需要认证：需要
 
