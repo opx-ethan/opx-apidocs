@@ -348,6 +348,7 @@ socket.onmessage = function (event) {
 - 是否需要订阅：需要
 - 深度数据格式：`[price, amount]`
 - 需要自己维护订单薄，按照sequenceId递增更新订单薄
+- 维护订单薄规则:推送按照价格匹配，如果存在当前价格 ，那么amount更新为最新值（直接替换），如果amount = 0 将该价格移除订单薄，如果当前价格不存在，按照价格排序插入到订单薄
 
 ## Websocket Tick消息
 
@@ -405,6 +406,7 @@ socket.onmessage = function (event) {
   - dir: 1=主动买入, 0=主动卖出
   - price: 成交价格
   - amount: 成交数量
+  - volume: 成交额
   - flag: 0=普通成交（后续增加爆仓标志）
 
 
