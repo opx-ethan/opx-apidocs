@@ -318,26 +318,27 @@ socket.onmessage = function (event) {
 {
   "type": "orderbook",
   "symbol": "BTC_USDT",
-  "lastSequenceId": 793372,
-  "sequenceId": 793376,
+  "timestamp": "1693629379104",
+  "lastSequenceId": 963061,
+  "sequenceId": 963066,
   "data": {
     "sellOrders": [
       [
-        26039.3,
-        2
+        25770.8,
+        1.95
       ]
     ],
     "direction": "LONG",
     "symbol": "BTC_USDT",
-    "price": 26038.9,
+    "price": 25768.16,
     "buyOrders": [
       [
-        26035.62,
-        3.99
+        25765.52,
+        8.39
       ]
     ],
     "symbolId": 100105,
-    "sequenceId": 793376
+    "sequenceId": 963066
   }
 }
 ```
