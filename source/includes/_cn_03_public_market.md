@@ -490,12 +490,30 @@ API响应样例：
   "data": {
     "symbolId": 100105,
     "symbol": "BTC_USDT",
-    "price": 29421.71,
-    "sellOrders": [],
-    "buyOrders": [],
-    "sequenceId": 390,
-    "direction": "SHORT",
-    "timestamp": 1691216889145
+    "price": 25777.52,
+    "sellOrders": [
+      [
+        25777.60, // price
+        1.86     // amount
+      ],
+      [
+        25780.94,
+        1.61
+      ]
+    ],
+    "buyOrders": [
+      [
+        25777.46,
+        0.47
+      ],
+      [
+        25777.38,
+        0.97
+      ]
+    ],
+    "sequenceId": 945599,
+    "direction": "LONG",
+    "timestamp": 1693624727179
   }
 }
 ```
