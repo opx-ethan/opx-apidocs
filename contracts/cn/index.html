@@ -2720,6 +2720,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>是否需要订阅：需要</li>
 <li>深度数据格式：<code>[price, amount]</code></li>
 <li>需要自己维护订单薄，按照sequenceId递增更新订单薄</li>
+<li>维护订单薄规则:推送按照价格匹配，如果存在当前价格 ，那么amount更新为最新值（直接替换），如果amount = 0 将该价格移除订单薄，如果当前价格不存在，按照价格排序插入到订单薄</li>
 </ul>
 <h2 id='websocket-tick'>Websocket Tick消息</h2>
 <p>服务器不定期推送最新成交的Tick消息如下：</p>
@@ -2776,6 +2777,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>dir: 1=主动买入, 0=主动卖出</li>
 <li>price: 成交价格</li>
 <li>amount: 成交数量</li>
+<li>volume: 成交额</li>
 <li>flag: 0=普通成交（后续增加爆仓标志）</li>
 </ul></li>
 </ul>
