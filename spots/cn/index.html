@@ -463,6 +463,9 @@
                   <li>
                     <a href="#cee43df56e" class="toc-h2 toc-link" data-title="订单状态变更消息">订单状态变更消息</a>
                   </li>
+                  <li>
+                    <a href="#fd75112fba" class="toc-h2 toc-link" data-title="现货账户余额变更消息">现货账户余额变更消息</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2176,9 +2179,10 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>TICKER.{symbol_name}</li>
 <li>ALL-TICKER</li>
 <li>BAR.{MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}.{symbol_name}</li>
+<li>BBO.{symbol_name}</li>
 <li>SPOTS.ORDER_STATUS_CHANGED</li>
 <li>SPOTS.ORDER_MATCHED</li>
-<li>BBO.{symbol_name}</li>
+<li>SPOTS.ACCOUNT_CHANGED</li>
 </ol>
 
 <p>目前服务端返回消息的type list</p>
@@ -2190,9 +2194,10 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>TICKER</li>
 <li>ALL-TICKER</li>
 <li>BAR</li>
+<li>BBO</li>
 <li>SPOTS.ORDER_STATUS_CHANGED</li>
 <li>SPOTS.ORDER_MATCHED</li>
-<li>BBO</li>
+<li>SPOTS.ACCOUNT_CHANGED</li>
 </ol>
 <h2 id='b109d834a1'>取消订阅</h2>
 <p>已经订阅的topic可以通过<code>unsubscribe</code>的action取消，发送消息如下：</p>
@@ -2505,6 +2510,33 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <ul>
 <li>消息类型：<code>SPOTS.ORDER_STATUS_CHANGED</code></li>
 <li>是否需要认证：需要</li>
+</ul>
+<h2 id='fd75112fba'>现货账户余额变更消息</h2>
+<p>当用户某个currency余额发生变动后，推送最新的currency余额：</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOTS.ACCOUNT_CHANGED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2677976</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99999978312017E10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">161.71</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10010001017</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99999978312017E10</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"spotsFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">161.71</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1694178697426</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1694178697426</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>说明：</p>
+
+<ul>
+<li>消息类型：<code>SPOTS.ACCOUNT_CHANGED</code></li>
+<li>是否需要认证：需要</li>
+<li>按照currencyId 更新余额</li>
 </ul>
 <h1 id='20ff2c8e16'>资产中心</h1>
 <p>资产中心API可用于获取资产中心账户余额、与币币账户。</p>
