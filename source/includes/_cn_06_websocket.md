@@ -6,7 +6,7 @@ WebSocket API是指连接到WebSocket后推送的数据。
 
 ## 连接信息
 
-WebSocket只支持wss协议，地址是ws://13.112.107.117:8081/v2/market/notification
+WebSocket只支持wss协议，地址是ws://dev.server.opx.pro:8081/v2/market/notification
 
 ## 用户认证
 
@@ -14,7 +14,7 @@ WebSocket只支持wss协议，地址是ws://13.112.107.117:8081/v2/market/notifi
 
 以API方式请求wss token，可以访问如下API地址（需要API签名）：
 
-用户API请求：GET http://13.112.107.117/v2/users/notification/token
+用户API请求：GET http://dev.server.opx.pro/v2/users/notification/token
 
 如果用户未登录，返回400错误，如果用户已登录，返回包含Token的JSON如下：
 
@@ -35,7 +35,7 @@ WebSocket只支持wss协议，地址是ws://13.112.107.117:8081/v2/market/notifi
 将获取的token作为参数附加到wss连接：
 
 ```
-ws://13.112.107.117:8081/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
+ws://dev.server.opx.pro:8081/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
 ```
 
 WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服务器验证用户成功，推送消息如下：
