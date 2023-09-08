@@ -90,9 +90,11 @@ socket.send(JSON.stringify({
 3. TICKER.{symbol_name}
 4. ALL-TICKER
 5. BAR.{MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}.{symbol_name}
-6. SPOTS.ORDER_STATUS_CHANGED
-7. SPOTS.ORDER_MATCHED
-8. BBO.{symbol_name}
+6. BBO.{symbol_name}
+7. SPOTS.ORDER_STATUS_CHANGED
+8. SPOTS.ORDER_MATCHED
+9. SPOTS.ACCOUNT_CHANGED
+
 
 目前服务端返回消息的type list
 
@@ -102,9 +104,11 @@ socket.send(JSON.stringify({
 4. TICKER
 5. ALL-TICKER
 6. BAR
-7. SPOTS.ORDER_STATUS_CHANGED
-8. SPOTS.ORDER_MATCHED
-9. BBO
+7. BBO
+8. SPOTS.ORDER_STATUS_CHANGED
+9. SPOTS.ORDER_MATCHED
+10. SPOTS.ACCOUNT_CHANGED
+
 
 ##  取消订阅
 
@@ -480,4 +484,37 @@ socket.onmessage = function (event) {
 
 - 消息类型：`SPOTS.ORDER_STATUS_CHANGED`
 - 是否需要认证：需要
+
+
+## 现货账户余额变更消息
+
+当用户某个currency余额发生变动后，推送最新的currency余额：
+
+```json
+{
+  "type": "SPOTS.ACCOUNT_CHANGED",
+  "sequenceId": 2677976,
+  "data": {
+    "available": 9.99999978312017E10,
+    "frozen": 161.71,
+    "currencyId": {
+      "userId": 10010001017,
+      "accountId": 0,
+      "currencyId": 100,
+      "available": 9.99999978312017E10,
+      "spotsFrozen": 161.71,
+      "updatedAt": 1694178697426
+    },
+    "updatedAt": 1694178697426
+  }
+}
+```
+
+说明：
+
+- 消息类型：`SPOTS.ACCOUNT_CHANGED`
+- 是否需要认证：需要
+- 按照currencyId 更新余额
+
+
 
