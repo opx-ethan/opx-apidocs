@@ -2116,13 +2116,13 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h1 id='websocket-api'>WebSocket API</h1>
 <p>WebSocket API是指连接到WebSocket后推送的数据。</p>
 <h2 id='b98a1892b6'>连接信息</h2>
-<p>WebSocket只支持wss协议，地址是ws://13.112.107.117:8081/v2/market/notification</p>
+<p>WebSocket只支持wss协议，地址是ws://dev.server.opx.pro:8081/v2/market/notification</p>
 <h2 id='4ade1cf0af'>用户认证</h2>
 <p>要以认证用户连接wss，必须提供一个有效的wss token。获取wss token的方式是：</p>
 
 <p>以API方式请求wss token，可以访问如下API地址（需要API签名）：</p>
 
-<p>用户API请求：GET http://13.112.107.117/v2/users/notification/token</p>
+<p>用户API请求：GET http://dev.server.opx.pro/v2/users/notification/token</p>
 
 <p>如果用户未登录，返回400错误，如果用户已登录，返回包含Token的JSON如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -2140,7 +2140,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ol>
 
 <p>将获取的token作为参数附加到wss连接：</p>
-<div class="highlight"><pre class="highlight plaintext"><code>ws://13.112.107.117:8081/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
+<div class="highlight"><pre class="highlight plaintext"><code>ws://dev.server.opx.pro:8081/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
 </code></pre></div>
 <p>WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服务器验证用户成功，推送消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
