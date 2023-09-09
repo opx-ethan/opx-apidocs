@@ -493,19 +493,20 @@ socket.onmessage = function (event) {
 ```json
 {
   "type": "SPOTS.ACCOUNT_CHANGED",
-  "sequenceId": 2677976,
+  "sequenceId": 2837623,
   "data": {
-    "available": 9.99999978312017E10,
-    "frozen": 161.71,
-    "currencyId": {
+    "available": 9.994861380499118E10,
+    "frozen": 5039418.923,
+    "currency": {
       "userId": 10010001017,
       "accountId": 0,
-      "currencyId": 100,
-      "available": 9.99999978312017E10,
-      "spotsFrozen": 161.71,
-      "updatedAt": 1694178697426
+      "currencyId": 105,
+      "currencyName": "USDT",
+      "available": 9.994861380499118E10,
+      "spotsFrozen": 5039418.923,
+      "updatedAt": 1694228357108
     },
-    "updatedAt": 1694178697426
+    "updatedAt": 1694228357108
   }
 }
 ```
