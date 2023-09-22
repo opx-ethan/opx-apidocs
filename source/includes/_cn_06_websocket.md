@@ -475,6 +475,7 @@ socket.onmessage = function (event) {
     "id": 176529405378626,
     "direction": "SHORT",
     "status": "FULLY_FILLED",
+    "cid": "123458",  // clientOrderId
     "updatedAt": 1693575146891
   }
 }
