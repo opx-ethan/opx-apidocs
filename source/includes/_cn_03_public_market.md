@@ -340,9 +340,10 @@ API响应样例：
 
 数据格式：
 
-`[timestamp, open, high, low, close, amount]`
-
-`[时间戳，开盘价，最高价，最低价，收盘价，成交量]`
+`[timestamp, takerDirection, price, volume, amount, isHidden]`
+`[时间戳，taker订单方向，价格，成交量，成交额，是否为冰山单]`
+`takerDirection 1 LONG  0 SHORT`
+`isHidden  1  true  0 false`
 
 
 ## 获取所有统计价格
