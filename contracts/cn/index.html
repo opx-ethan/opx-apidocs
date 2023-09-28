@@ -914,9 +914,10 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>数据格式：</p>
 
-<p><code>[timestamp, open, high, low, close, amount]</code></p>
-
-<p><code>[时间戳，开盘价，最高价，最低价，收盘价，成交量]</code></p>
+<p><code>[timestamp, takerDirection, price, volume, amount, isHidden]</code>
+<code>[时间戳，taker订单方向，价格，成交量，成交额，是否为冰山单]</code>
+<code>takerDirection 1 LONG  0 SHORT</code>
+<code>isHidden  1  true  0 false</code></p>
 <h2 id='28a0acbc2b'>获取所有统计价格</h2>
 <p>API描述：获取所有交易对的最近24小时统计价格.</p>
 
