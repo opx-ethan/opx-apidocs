@@ -289,8 +289,9 @@ socket.onmessage = function (event) {
 说明：
 
 - 消息类型：bar
-- 数据格式：[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004,1843.68] ---
-- [timestamp, open, high, low, close, volume，amount]
+- 数据格式：
+  `[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004,1843.68]`
+  `[timestamp, open, high, low, close, volume，amount]`
 
 
 ## Websocket BBO消息
