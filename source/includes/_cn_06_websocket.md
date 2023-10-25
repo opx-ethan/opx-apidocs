@@ -289,7 +289,8 @@ socket.onmessage = function (event) {
 说明：
 
 - 消息类型：bar
-- 数据格式：[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004] --- [timestamp, open, high, low, close, amount,volume]
+- 数据格式：[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004,1843.68] ---
+- [timestamp, open, high, low, close, volume，amount]
 
 
 ## Websocket BBO消息
@@ -406,12 +407,12 @@ socket.onmessage = function (event) {
 - 消息类型：tick
 - 是否需要订阅：需要
 - 一个tick消息包含一个或多个成交信息
-- tick数据格式：`[timestamp, dir, price, amount, flag]`
+- tick数据格式：`[timestamp, dir, price, volume, amount, flag]`
   - timestamp: 时间戳
   - dir: 1=主动买入, 0=主动卖出
   - price: 成交价格
-  - amount: 成交数量
-  - volume: 成交额
+  - volume: 成交数量
+  - amount: 成交额
   - flag: 0=普通成交（后续增加爆仓标志）
 
 
