@@ -2353,8 +2353,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <ul>
 <li>消息类型：bar</li>
-<li>数据格式：[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004,1843.68] ---</li>
-<li>[timestamp, open, high, low, close, volume，amount]</li>
+<li>数据格式：[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004] --- [timestamp, open, high, low, close, amount,volume]</li>
 </ul>
 <h2 id='websocket-bbo'>Websocket BBO消息</h2>
 <p>服务器以固定频率推送BBO消息如下：</p>
@@ -2456,14 +2455,14 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>消息类型：tick</li>
 <li>是否需要订阅：需要</li>
 <li>一个tick消息包含一个或多个成交信息</li>
-<li>tick数据格式：<code>[timestamp, dir, price, volume, amount, flag]</code>
+<li>tick数据格式：<code>[timestamp, dir, price, amount, flag]</code>
 
 <ul>
 <li>timestamp: 时间戳</li>
 <li>dir: 1=主动买入, 0=主动卖出</li>
 <li>price: 成交价格</li>
-<li>volume: 成交数量</li>
-<li>amount: 成交额</li>
+<li>amount: 成交数量</li>
+<li>volume: 成交额</li>
 <li>flag: 0=普通成交（后续增加爆仓标志）</li>
 </ul></li>
 </ul>
