@@ -482,7 +482,10 @@
                     <a href="#cee43df56e" class="toc-h2 toc-link" data-title="订单状态变更消息">订单状态变更消息</a>
                   </li>
                   <li>
-                    <a href="#fd75112fba" class="toc-h2 toc-link" data-title="现货账户余额变更消息">现货账户余额变更消息</a>
+                    <a href="#6ad5878cbd" class="toc-h2 toc-link" data-title="合约账户余额变更消息">合约账户余额变更消息</a>
+                  </li>
+                  <li>
+                    <a href="#8a69d9fa83" class="toc-h2 toc-link" data-title="合约仓位变更消息">合约仓位变更消息</a>
                   </li>
               </ul>
           </li>
@@ -508,7 +511,7 @@
         <h1 id='46ae2946a2'>基础介绍</h1>
 <p>API使用HTTPS。</p>
 
-<p>针对终端用户的API - Ip是<code>http://dev.server.opx.pro</code>。</p>
+<p>针对终端用户的API - Ip是<code>https://dev.server.opx.pro</code>。</p>
 
 <p>API调用方式：</p>
 
@@ -518,20 +521,20 @@
 </ul>
 <h2 id='1f9ac54b15'>请求参数</h2>
 <ul>
-<li>GET请求以URL参数传入，例如：<a href="http://dev.server.opx.pro/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590">http://dev.server.opx.pro/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590</a></li>
+<li>GET请求以URL参数传入，例如：<a href="https://dev.server.opx.pro/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590">https://dev.server.opx.pro/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590</a></li>
 <li>POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json</li>
 </ul>
 <h2 id='70bdef7e25'>返回参数</h2>
 <p>如果API调用成功，返回200，内容总是JSON，且具有<code>Content-Type: application/json</code>。</p>
 
-<p>如果API调用失败，返回400，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="http://dev.server.opx.pro/v2/market/error">http://dev.server.opx.pro/v2/market/error</a>。</p>
+<p>如果API调用失败，返回400，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="https://dev.server.opx.pro/v2/market/error">https://dev.server.opx.pro/v2/market/error</a>。</p>
 
 <p>如果API超过了业务频率限制，返回429，无内容，可根据返回头<code>X-RateLimit-Biz-Limit</code>、&quot;<code>X-RateLimit-Biz-Burst</code>和<code>X-RateLimit-Biz-Remaining</code>获取限频次数。</p>
 <h2 id='d91b75440f'>字符编码</h2>
 <p>全部使用UTF-8且只能使用UTF-8。</p>
 
 <p>示例：一个完整的GET请求:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>http://dev.server.opx.pro/v2/market/meta
+<div class="highlight"><pre class="highlight plaintext"><code>https://dev.server.opx.pro/v2/market/meta
 </code></pre></div><h1 id='8ba46c43fe'>签名</h1>
 <p>API请求需要签名，以确认用户身份，并防止重放攻击。</p>
 
@@ -2520,7 +2523,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h1 id='websocket-api'>WebSocket API</h1>
 <p>WebSocket API是指连接到WebSocket后推送的数据。</p>
 <h2 id='b98a1892b6'>连接信息</h2>
-<p>WebSocket只支持wss协议，地址是ws://dev.server.opx.pro:8081/v2/market/notification</p>
+<p>WebSocket只支持wss协议，地址是wss://dev-ws.server.opx.pro/v2/market/notification</p>
 <h2 id='4ade1cf0af'>用户认证</h2>
 <p>要以认证用户连接wss，必须提供一个有效的wss token。获取wss token的方式是：</p>
 
@@ -2544,7 +2547,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ol>
 
 <p>将获取的token作为参数附加到wss连接：</p>
-<div class="highlight"><pre class="highlight plaintext"><code>ws://dev.server.opx.pro:8081/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
+<div class="highlight"><pre class="highlight plaintext"><code>wss://dev-ws.server.opx.pro/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
 </code></pre></div>
 <p>WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服务器验证用户成功，推送消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -2566,13 +2569,15 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>连接WSS后，需要订阅指定topic，发送消息如下：</p>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="na">action</span><span class="p">:</span> <span class="dl">"</span><span class="s2">subscribe</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">topic</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tick.BTC_USDT</span><span class="dl">"</span>
+    <span class="na">topic</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ORDERBOOK.BTCUSDT_PERP</span><span class="dl">"</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>返回格式：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"TOPICS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w"> </span><span class="s2">"tick.btc_usdt"</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">所有已经订阅的topic</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TOPICS"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"ORDERBOOK.BTCUSDT_PERP"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>目前支持的topic</p>
@@ -2584,9 +2589,10 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>ALL-TICKER</li>
 <li>BAR.{MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}.{symbol_name}</li>
 <li>BBO.{symbol_name}</li>
-<li>SPOTS.ORDER_STATUS_CHANGED</li>
-<li>SPOTS.ORDER_MATCHED</li>
-<li>SPOTS.ACCOUNT_CHANGED</li>
+<li>CONTRACTS.ORDER_STATUS_CHANGED</li>
+<li>CONTRACTS.ORDER_MATCHED</li>
+<li>CONTRACTS.ACCOUNT_CHANGED</li>
+<li>CONTRACTS.POSITION_CHANGED</li>
 </ol>
 
 <p>目前服务端返回消息的type list</p>
@@ -2599,15 +2605,16 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>ALL-TICKER</li>
 <li>BAR</li>
 <li>BBO</li>
-<li>SPOTS.ORDER_STATUS_CHANGED</li>
-<li>SPOTS.ORDER_MATCHED</li>
-<li>SPOTS.ACCOUNT_CHANGED</li>
+<li>CONTRACTS.ORDER_STATUS_CHANGED</li>
+<li>CONTRACTS.ORDER_MATCHED</li>
+<li>CONTRACTS.ACCOUNT_CHANGED</li>
+<li>CONTRACTS.POSITION_CHANGED</li>
 </ol>
 <h2 id='b109d834a1'>取消订阅</h2>
 <p>已经订阅的topic可以通过<code>unsubscribe</code>的action取消，发送消息如下：</p>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="na">action</span><span class="p">:</span> <span class="dl">"</span><span class="s2">unsubscribe</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">topic</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tick.BTC_USDT</span><span class="dl">"</span>
+    <span class="na">topic</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ORDERBOOK.BTCUSDT_PERP</span><span class="dl">"</span>
 <span class="p">});</span>
 </code></pre></div>
 <p>支持的topic与订阅相同</p>
@@ -2616,7 +2623,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message-type"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">消息类型</span><span class="w">
     </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">序列ID</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可选，仅限已订阅的symbol</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可选，仅限已订阅的symbol</span><span class="w">
     </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">34567</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可选，仅限针对单用户的消息，例如order_filled</span><span class="w">
     </span><span class="nl">"resolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可选，仅限针对bar类型的消息，表示bar的类型</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">消息其他字段</span><span class="w">
@@ -2645,33 +2652,34 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="nl">"gap"</span><span class="p">:</span><span class="mi">336</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">服务器时间与client时间的差值，可以用来判断连接网络状态</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='ticker'>TICKER消息</h2>
-<p>服务器以固定频率推送市场价格摘要消息如下：</p>
+<p>服务器推送市场价格摘要消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="mi">1693574940000</span><span class="p">,</span><span class="w">
-    </span><span class="mf">27152.7</span><span class="p">,</span><span class="w">
-    </span><span class="mf">27205.2</span><span class="p">,</span><span class="w">
-    </span><span class="mf">25739.24</span><span class="p">,</span><span class="w">
-    </span><span class="mf">26031.52</span><span class="p">,</span><span class="w">
-    </span><span class="mf">133609.57</span><span class="p">,</span><span class="w">
-    </span><span class="mf">3504106410.368</span><span class="p">,</span><span class="w">
-    </span><span class="mf">-0.041291657919839</span><span class="w">
+    </span><span class="mi">1699523040000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">43</span><span class="p">,</span><span class="w">
+    </span><span class="mf">107.5</span><span class="p">,</span><span class="w">
+    </span><span class="mi">0</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">794752</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693574966918</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">157154</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699523058351</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>说明：</p>
-
-<ul>
-<li>消息类型：TICKER</li>
-<li>只有24小时内有交易的symbol会出现，没有交易的symbol不会出现</li>
-<li>数据格式：与Bar数据类型相同，可看作最近24小时的一条K线图（但不同于日K，因为日K的起始时间是0:00）</li>
-</ul>
+<p>说明：
+- 消息类型：TICKER
+- 只有24小时内有交易的symbol会出现，没有交易的symbol不会出现
+- 数据格式：与Bar数据类型相同，可看作最近24小时的一条K线图（但不同于日K，因为日K的起始时间是0:00）
+- change: 24小时涨跌幅
+- 数据格式：
+  <code>[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004,1843.68, 0]</code>
+  <code>[timestamp, open, high, low, close, volume，amount,change]</code></p>
 <h2 id='all_ticker'>ALL_TICKER消息</h2>
-<p>服务器以固定频率推送全交易对市场价格摘要。首次订阅将返回所有交易对的价格摘要，后续会只推送有数据更新的交易对价格摘要。</p>
+<p>服务器推送全交易对市场价格摘要。首次订阅将返回所有交易对的价格摘要，后续会只推送有数据更新的交易对价格摘要。</p>
 
 <p>订阅：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -2682,57 +2690,93 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>消息格式：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALL-TICKER"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693575018105</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699680695758</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mi">1693575000000</span><span class="p">,</span><span class="w">
-        </span><span class="mf">27163.76</span><span class="p">,</span><span class="w">
-        </span><span class="mf">27205.2</span><span class="p">,</span><span class="w">
-        </span><span class="mf">25739.24</span><span class="p">,</span><span class="w">
-        </span><span class="mf">26032.64</span><span class="p">,</span><span class="w">
-        </span><span class="mf">133643.71</span><span class="p">,</span><span class="w">
-        </span><span class="mf">3504875464.9052</span><span class="p">,</span><span class="w">
-        </span><span class="mf">-0.041640774325793</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">794931</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693575016899</span><span class="w">
-    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH_USDT"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mi">1693575000000</span><span class="p">,</span><span class="w">
-        </span><span class="mf">1705.54</span><span class="p">,</span><span class="w">
-        </span><span class="mf">1708.4</span><span class="p">,</span><span class="w">
-        </span><span class="mf">1632.28</span><span class="p">,</span><span class="w">
-        </span><span class="mf">1644.84</span><span class="p">,</span><span class="w">
-        </span><span class="mf">66586.38</span><span class="p">,</span><span class="w">
-        </span><span class="mf">110361200.734</span><span class="p">,</span><span class="w">
-        </span><span class="mf">-0.035589901145678</span><span class="w">
+        </span><span class="mi">1699618980000</span><span class="p">,</span><span class="w">
+        </span><span class="mf">1787.41</span><span class="p">,</span><span class="w">
+        </span><span class="mf">1787.41</span><span class="p">,</span><span class="w">
+        </span><span class="mf">1639.22</span><span class="p">,</span><span class="w">
+        </span><span class="mf">1639.22</span><span class="p">,</span><span class="w">
+        </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="mf">1639.22</span><span class="p">,</span><span class="w">
+        </span><span class="mf">-0.082907670875736</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">794932</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693575016912</span><span class="w">
+      </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">97623185</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699619021105</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1699523040000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">43</span><span class="p">,</span><span class="w">
+        </span><span class="mf">107.5</span><span class="p">,</span><span class="w">
+        </span><span class="mi">0</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">157154</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699523058351</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1699680660000</span><span class="p">,</span><span class="w">
+        </span><span class="mf">36677.06</span><span class="p">,</span><span class="w">
+        </span><span class="mf">37519.9</span><span class="p">,</span><span class="w">
+        </span><span class="mf">36340.02</span><span class="p">,</span><span class="w">
+        </span><span class="mf">37108.86</span><span class="p">,</span><span class="w">
+        </span><span class="mf">148735.16</span><span class="p">,</span><span class="w">
+        </span><span class="mf">5513377587.616</span><span class="p">,</span><span class="w">
+        </span><span class="mf">0.011773026518483</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">97703325</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699680687065</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHUSDT_PERP"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1699608600000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">3271</span><span class="p">,</span><span class="w">
+        </span><span class="mi">6542</span><span class="p">,</span><span class="w">
+        </span><span class="mi">0</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">205836</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699608607796</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='websocket-bar'>Websocket Bar信息</h2>
+</span></code></pre></div>
+<p>说明：
+- 消息类型：ALL-TICKER
+- 数据格式：与TICKER 一样</p>
+<h2 id='websocket-bar'>Websocket Bar信息</h2>
 <p>服务器会根据实际成交以最低0.5s的速度推送bar（candle）信息：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAR"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"resolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN15"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">795097</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"resolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">157154</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="mi">1693575000000</span><span class="p">,</span><span class="w">
-    </span><span class="mf">26032.34</span><span class="p">,</span><span class="w">
-    </span><span class="mf">26051.16</span><span class="p">,</span><span class="w">
-    </span><span class="mf">26030.78</span><span class="p">,</span><span class="w">
-    </span><span class="mf">26050.7</span><span class="p">,</span><span class="w">
-    </span><span class="mf">234.92</span><span class="p">,</span><span class="w">
-    </span><span class="mf">6116784.4598</span><span class="w">
+    </span><span class="mi">1699680780000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="mi">0</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -2748,42 +2792,37 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>服务器以固定频率推送BBO消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBO"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">793396</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693574535172</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bidPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">26039.02</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bidVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.24</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"askPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">26039.06</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"askVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.42</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">236709</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699685654818</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bidPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">27000.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bidVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"askPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">29000.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"askVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='websocket-orderbook'>Websocket OrderBook消息</h2>
 <p>服务器以固定频率增量推送OrderBook消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orderbook"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1693629379104"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"lastSequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">963061</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">963066</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1699680530904"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"lastSequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">234562</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">234638</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"sellOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">[</span><span class="w">
-        </span><span class="mf">25770.8</span><span class="p">,</span><span class="w">
-        </span><span class="mf">1.95</span><span class="w">
+        </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+        </span><span class="mi">0</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">25768.16</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"buyOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="mf">25765.52</span><span class="p">,</span><span class="w">
-        </span><span class="mf">8.39</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100105</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">963066</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"buyOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">234638</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -2800,39 +2839,15 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>服务器不定期推送最新成交的Tick消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICK"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">794534</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">235903</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">[</span><span class="w">
-      </span><span class="mi">1693574906883</span><span class="p">,</span><span class="w">
+      </span><span class="mi">1699683670464</span><span class="p">,</span><span class="w">
       </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="mf">26033.940000</span><span class="p">,</span><span class="w">
-      </span><span class="mf">2.000000</span><span class="p">,</span><span class="w">
-      </span><span class="mf">52067.880000</span><span class="p">,</span><span class="w">
-      </span><span class="mi">0</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="p">[</span><span class="w">
-      </span><span class="mi">1693574906883</span><span class="p">,</span><span class="w">
+      </span><span class="mi">25000</span><span class="p">,</span><span class="w">
       </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="mf">26033.960000</span><span class="p">,</span><span class="w">
-      </span><span class="mf">0.950000</span><span class="p">,</span><span class="w">
-      </span><span class="mf">24732.262000</span><span class="p">,</span><span class="w">
-      </span><span class="mi">0</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="p">[</span><span class="w">
-      </span><span class="mi">1693574906883</span><span class="p">,</span><span class="w">
-      </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="mf">26034.100000</span><span class="p">,</span><span class="w">
-      </span><span class="mf">2.360000</span><span class="p">,</span><span class="w">
-      </span><span class="mf">61440.476000</span><span class="p">,</span><span class="w">
-      </span><span class="mi">0</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="p">[</span><span class="w">
-      </span><span class="mi">1693574906883</span><span class="p">,</span><span class="w">
-      </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="mf">26034.180000</span><span class="p">,</span><span class="w">
-      </span><span class="mf">1.540000</span><span class="p">,</span><span class="w">
-      </span><span class="mf">40092.637200</span><span class="p">,</span><span class="w">
+      </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
       </span><span class="mi">0</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -2858,93 +2873,154 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <h2 id='f4310d52cf'>订单成交消息</h2>
 <p>当用户订单成交后，获得订单成交消息：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOTS.ORDER_MATCHED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">795536</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTRACTS.ORDER_MATCHED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">235903</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">176530000970114</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">227771427061828</span><span class="p">,</span><span class="w">
     </span><span class="nl">"matchType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TAKER"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">26029.42</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0032</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"matchedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"feeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693575216940</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">25000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"matchedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"feeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699683670464</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：</p>
 
 <ul>
-<li>消息类型：<code>SPOTS.ORDER_MATCHED</code></li>
+<li>消息类型：<code>CONTRACTS.ORDER_MATCHED</code></li>
 <li>是否需要认证：需要</li>
 </ul>
 <h2 id='cee43df56e'>订单状态变更消息</h2>
 <p>当用户订单状态发生变动后，获得订单状态变化消息：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOTS.ORDER_STATUS_CHANGED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">795290</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTRACTS.ORDER_STATUS_CHANGED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">235903</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.54</span><span class="p">,</span><span class="w">
     </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
     </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">118.1781068</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"marginTrade"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"chargeQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0025</span><span class="p">,</span><span class="w">
     </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">26030.42</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">25000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693575145085</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699683660415</span><span class="p">,</span><span class="w">
     </span><span class="nl">"trailing"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">26030.42</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">25000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
     </span><span class="nl">"failReason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">176529405378626</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">227771343175748</span><span class="p">,</span><span class="w">
     </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FULLY_FILLED"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123458"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">clientOrderId</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693575146891</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699683670464</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：</p>
 
 <ul>
-<li>消息类型：<code>SPOTS.ORDER_STATUS_CHANGED</code></li>
+<li>消息类型：<code>CONTRACTS.ORDER_STATUS_CHANGED</code></li>
 <li>是否需要认证：需要</li>
 </ul>
-<h2 id='fd75112fba'>现货账户余额变更消息</h2>
+<h2 id='6ad5878cbd'>合约账户余额变更消息</h2>
 <p>当用户某个currency余额发生变动后，推送最新的currency余额：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOTS.ACCOUNT_CHANGED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2837623</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTRACTS.ACCOUNT_CHANGED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">235709</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.994861380499118E10</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">5039418.923</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10010001017</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"currencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.994861380499118E10</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"spotsFrozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">5039418.923</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1694228357108</span><span class="w">
+    </span><span class="nl">"currenName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"derivative"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"iconUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static.opx.pro/icon/usdt.svg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"displayScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"depositOpenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"withdrawOpenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TetherUS"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1694228357108</span><span class="w">
+    </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10010001050</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699683204049</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：</p>
 
 <ul>
-<li>消息类型：<code>SPOTS.ACCOUNT_CHANGED</code></li>
+<li>消息类型：<code>CONTRACTS.ACCOUNT_CHANGED</code></li>
 <li>是否需要认证：需要</li>
 <li>按照currencyId 更新余额</li>
+</ul>
+<h2 id='8a69d9fa83'>合约仓位变更消息</h2>
+<p>当用户仓位发生变动后，推送最新的仓位信息：</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTRACTS.POSITION_CHANGED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">236087</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"openTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1546300800000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERPETUAL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"marginCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sizeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"inverse"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"liquidateBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDEX_PRICE"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0E-4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minimumPriceIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceStep"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"maximumQuantityPerOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"riskLimit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"initialMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maintenanceMarginRateStep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maxLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"riskLimitBase"</span><span class="p">:</span><span class="w"> </span><span class="mi">200000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"riskLimitStep"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maxRiskLimitSteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1546956010600</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"settlementFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"referencedIndexes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"SPOT"</span><span class="p">:</span><span class="w"> </span><span class="mi">30010</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"FAIR"</span><span class="p">:</span><span class="w"> </span><span class="mi">30030</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PREMIUM_1M"</span><span class="p">:</span><span class="w"> </span><span class="mi">30031</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PREMIUM_AGGREGATE"</span><span class="p">:</span><span class="w"> </span><span class="mi">30032</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"MAX_PREMIUM_RATE"</span><span class="p">:</span><span class="w"> </span><span class="mi">30021</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"FUNDING_RATE_1M"</span><span class="p">:</span><span class="w"> </span><span class="mi">30033</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"FUNDING_RATE_AGGREGATE"</span><span class="p">:</span><span class="w"> </span><span class="mi">30034</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"LENDING_RATE_1D"</span><span class="p">:</span><span class="w"> </span><span class="mi">30020</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">25000.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INCREASE"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1699684127769</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>说明：</p>
+
+<ul>
+<li>消息类型：<code>CONTRACTS.POSITION_CHANGED</code></li>
+<li>是否需要认证：需要</li>
 </ul>
 <h1 id='20ff2c8e16'>资产中心</h1>
 <p>资产中心API可用于获取资产中心、合约账户信息</p>

@@ -490,7 +490,7 @@
         <h1 id='46ae2946a2'>基础介绍</h1>
 <p>API使用HTTPS。</p>
 
-<p>针对终端用户的API - Ip是<code>http://dev.server.opx.pro</code>。</p>
+<p>针对终端用户的API - Ip是<code>https://dev.server.opx.pro</code>。</p>
 
 <p>API调用方式：</p>
 
@@ -500,20 +500,20 @@
 </ul>
 <h2 id='1f9ac54b15'>请求参数</h2>
 <ul>
-<li>GET请求以URL参数传入，例如：<a href="http://dev.server.opx.pro/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590">http://dev.server.opx.pro/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590</a></li>
+<li>GET请求以URL参数传入，例如：<a href="https://dev.server.opx.pro/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590">https://dev.server.opx.pro/v2/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590</a></li>
 <li>POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json</li>
 </ul>
 <h2 id='70bdef7e25'>返回参数</h2>
 <p>如果API调用成功，返回200，内容总是JSON，且具有<code>Content-Type: application/json</code>。</p>
 
-<p>如果API调用失败，返回400，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="http://dev.server.opx.pro/v2/market/error">http://dev.server.opx.pro/v2/market/error</a>。</p>
+<p>如果API调用失败，返回400，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="https://dev.server.opx.pro/v2/market/error">https://dev.server.opx.pro/v2/market/error</a>。</p>
 
 <p>如果API超过了业务频率限制，返回429，无内容，可根据返回头<code>X-RateLimit-Biz-Limit</code>、&quot;<code>X-RateLimit-Biz-Burst</code>和<code>X-RateLimit-Biz-Remaining</code>获取限频次数。</p>
 <h2 id='d91b75440f'>字符编码</h2>
 <p>全部使用UTF-8且只能使用UTF-8。</p>
 
 <p>示例：一个完整的GET请求:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>http://dev.server.opx.pro/v2/market/meta
+<div class="highlight"><pre class="highlight plaintext"><code>https://dev.server.opx.pro/v2/market/meta
 </code></pre></div><h1 id='8ba46c43fe'>签名</h1>
 <p>API请求需要签名，以确认用户身份，并防止重放攻击。</p>
 
@@ -2141,7 +2141,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h1 id='websocket-api'>WebSocket API</h1>
 <p>WebSocket API是指连接到WebSocket后推送的数据。</p>
 <h2 id='b98a1892b6'>连接信息</h2>
-<p>WebSocket只支持wss协议，地址是ws://dev.server.opx.pro:8081/v2/market/notification</p>
+<p>WebSocket只支持wss协议，地址是wss://dev-ws.server.opx.pro/v2/market/notification</p>
 <h2 id='4ade1cf0af'>用户认证</h2>
 <p>要以认证用户连接wss，必须提供一个有效的wss token。获取wss token的方式是：</p>
 
@@ -2165,7 +2165,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ol>
 
 <p>将获取的token作为参数附加到wss连接：</p>
-<div class="highlight"><pre class="highlight plaintext"><code>ws://dev.server.opx.pro:8081/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
+<div class="highlight"><pre class="highlight plaintext"><code>wss://dev-ws.server.opx.pro/v2/market/notification?token=SGo2QXRoMDAwMDAwMDAwMDExOGEyMjVhNGE4MDllNDI0Njg0YzE0ZjFhY2NjN2M1MGJhMDM3ZmU4ZjNiMTM3NzExMmFjNmFmNTgxZmY2ZWJlNTU0ZjkyYmM2ZTQ
 </code></pre></div>
 <p>WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服务器验证用户成功，推送消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
