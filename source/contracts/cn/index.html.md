@@ -15,7 +15,7 @@ toc_footers:
 includes:
   - cn_01_basic
   - cn_02_api_signature
-  - cn_03_public_market
+  - cn_03_01_public_market
   - cn_05_contracts_trade
   - cn_06_websocket
   - cn_07_assets

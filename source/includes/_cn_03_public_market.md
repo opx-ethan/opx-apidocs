@@ -253,18 +253,26 @@ API响应样例：
   "msg": "success",
   "data": {
     "ACCOUNT_INVALID": {
+      "zh_TW": "子賬戶 {{account}} 不合法",
       "en": "Account error: Account {{account}} invalid",
-      "cn": "子账户 {{account}} 不合法"
+      "zh_CN": "子账户 {{account}} 不合法"
     },
     "ACCOUNT_NO_ENOUGH_AVAILABLE": {
+      "zh_TW": "{{currency}} 賬戶缺少足夠的餘額",
       "en": "Account error: {{currency}} has no enough available",
-      "cn": "{{currency}} 账户缺少足够的余额"
+      "zh_CN": "{{currency}} 账户缺少足够的余额"
     },
     "ACCOUNT_NO_ENOUGH_BALANCE": {
+      "zh_TW": "餘額不足",
       "en": "Account error: no enough balance",
-      "cn": "余额不足"
+      "zh_CN": "余额不足"
     },
-    .......
+    "ACCOUNT_SIGN_INVALID": {
+      "zh_TW": "賬戶 {{account}} 簽名不合法",
+      "en": "Account error: Account {{account}} signature invalid",
+      "zh_CN": "账户 {{account}} 签名不合法"
+    }
+    ......
   }
 }
 ```
