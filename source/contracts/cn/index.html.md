@@ -18,7 +18,7 @@ includes:
   - cn_03_01_public_market
   - cn_05_contracts_trade
   - cn_06_websocket
-  - cn_07_assets
+  - cn_07_01_assets
   - cn_99_errors
 
 search: true
