@@ -17,7 +17,7 @@ includes:
   - cn_02_api_signature
   - cn_03_01_public_market
   - cn_05_contracts_trade
-  - cn_06_websocket
+  - cn_06_01_websocket
   - cn_07_01_assets
   - cn_99_errors
 
