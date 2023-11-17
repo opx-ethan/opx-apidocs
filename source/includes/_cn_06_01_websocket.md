@@ -97,6 +97,7 @@ socket.send(JSON.stringify({
 8. CONTRACTS.ORDER_MATCHED
 9. CONTRACTS.ACCOUNT_CHANGED
 10. CONTRACTS.POSITION_CHANGED
+11. CONTRACTS.POSITION_INfO_CHANGED
 
 
 目前服务端返回消息的type list
@@ -112,6 +113,7 @@ socket.send(JSON.stringify({
 9. CONTRACTS.ORDER_MATCHED
 10. CONTRACTS.ACCOUNT_CHANGED
 11. CONTRACTS.POSITION_CHANGED
+12. CONTRACTS.POSITION_INfO_CHANGED
 
 
 ##  取消订阅
@@ -537,9 +539,9 @@ socket.onmessage = function (event) {
 - 按照currencyId 更新余额
 
 
-## 合约仓位变更消息
+## 合约仓位数量变更消息
 
-当用户仓位发生变动后，推送最新的仓位信息：
+当用户仓位数量发生变动后，推送最新的仓位数量变更信息：
 
 ```json
 {
@@ -596,6 +598,79 @@ socket.onmessage = function (event) {
 说明：
 
 - 消息类型：`CONTRACTS.POSITION_CHANGED`
+- 是否需要认证：需要
+
+
+
+## 合约仓位信息变更消息
+
+当用户仓位发生变动后，推送最新的仓位信息：
+
+```json
+{
+  "type": "CONTRACTS.POSITION_INfO_CHANGED",
+  "sequenceId": 592787,
+  "data": {
+    "leverage": 10,
+    "symbol": {
+      "id": 16,
+      "name": "BTCUSDT_PERP",
+      "openTime": 1546300800000,
+      "endTime": 5000000000000,
+      "type": "PERPETUAL",
+      "marginCurrency": "USDT",
+      "sizeCurrency": "BTC",
+      "inverse": false,
+      "liquidateBy": "INDEX_PRICE",
+      "multiplier": 1.0E-4,
+      "minimumPriceIncrement": 0.5,
+      "priceStep": 5,
+      "priceScale": 1,
+      "maximumQuantityPerOrder": 2000,
+      "riskLimit": {
+        "id": 102,
+        "initialMarginRate": 0.01,
+        "maintenanceMarginRateStep": 0.005,
+        "maxLeverage": 100,
+        "riskLimitBase": 200000,
+        "riskLimitStep": 100000,
+        "maxRiskLimitSteps": 9,
+        "createdAt": 1546956010600
+      },
+      "settlementFeeRate": 0.0,
+      "displayOrder": 3,
+      "hidden": false,
+      "referencedIndexes": {
+        "SPOT": 30010,
+        "FAIR": 30030,
+        "PREMIUM_1M": 30031,
+        "PREMIUM_AGGREGATE": 30032,
+        "MAX_PREMIUM_RATE": 30021,
+        "FUNDING_RATE_1M": 30033,
+        "FUNDING_RATE_AGGREGATE": 30034,
+        "LENDING_RATE_1D": 30020
+      }
+    },
+    "margin": 0,
+    "riskLevel": 0,
+    "quantity": 0,
+    "maxQuantity": 200000,
+    "bankruptcyPrice": 0.0,
+    "minimumMaintenanceMarginRate": 0.005,
+    "liquidationPrice": 0.0,
+    "entryPrice": 36432.5,
+    "takerFeeRate": 0.002,
+    "realizedPNL": -0.149223,
+    "id": "10010001017_16",
+    "direction": "LONG",
+    "updatedAt": 1700194217392
+  }
+}
+```
+
+说明：
+
+- 消息类型：`CONTRACTS.POSITION_INfO_CHANGED`
 - 是否需要认证：需要
 
 
