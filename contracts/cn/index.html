@@ -485,7 +485,10 @@
                     <a href="#6ad5878cbd" class="toc-h2 toc-link" data-title="合约账户余额变更消息">合约账户余额变更消息</a>
                   </li>
                   <li>
-                    <a href="#8a69d9fa83" class="toc-h2 toc-link" data-title="合约仓位变更消息">合约仓位变更消息</a>
+                    <a href="#682a66ab2f" class="toc-h2 toc-link" data-title="合约仓位数量变更消息">合约仓位数量变更消息</a>
+                  </li>
+                  <li>
+                    <a href="#d12d986826" class="toc-h2 toc-link" data-title="合约仓位信息变更消息">合约仓位信息变更消息</a>
                   </li>
               </ul>
           </li>
@@ -2593,6 +2596,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>CONTRACTS.ORDER_MATCHED</li>
 <li>CONTRACTS.ACCOUNT_CHANGED</li>
 <li>CONTRACTS.POSITION_CHANGED</li>
+<li>CONTRACTS.POSITION_INfO_CHANGED</li>
 </ol>
 
 <p>目前服务端返回消息的type list</p>
@@ -2609,6 +2613,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>CONTRACTS.ORDER_MATCHED</li>
 <li>CONTRACTS.ACCOUNT_CHANGED</li>
 <li>CONTRACTS.POSITION_CHANGED</li>
+<li>CONTRACTS.POSITION_INfO_CHANGED</li>
 </ol>
 <h2 id='b109d834a1'>取消订阅</h2>
 <p>已经订阅的topic可以通过<code>unsubscribe</code>的action取消，发送消息如下：</p>
@@ -2964,8 +2969,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>是否需要认证：需要</li>
 <li>按照currencyId 更新余额</li>
 </ul>
-<h2 id='8a69d9fa83'>合约仓位变更消息</h2>
-<p>当用户仓位发生变动后，推送最新的仓位信息：</p>
+<h2 id='682a66ab2f'>合约仓位数量变更消息</h2>
+<p>当用户仓位数量发生变动后，推送最新的仓位数量变更信息：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTRACTS.POSITION_CHANGED"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">236087</span><span class="p">,</span><span class="w">
@@ -3020,6 +3025,74 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <ul>
 <li>消息类型：<code>CONTRACTS.POSITION_CHANGED</code></li>
+<li>是否需要认证：需要</li>
+</ul>
+<h2 id='d12d986826'>合约仓位信息变更消息</h2>
+<p>当用户仓位发生变动后，推送最新的仓位信息：</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTRACTS.POSITION_INfO_CHANGED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">592787</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"openTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1546300800000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000000000000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERPETUAL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"marginCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sizeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"inverse"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"liquidateBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INDEX_PRICE"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0E-4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"minimumPriceIncrement"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceStep"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"priceScale"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"maximumQuantityPerOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"riskLimit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"initialMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maintenanceMarginRateStep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maxLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"riskLimitBase"</span><span class="p">:</span><span class="w"> </span><span class="mi">200000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"riskLimitStep"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maxRiskLimitSteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1546956010600</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"settlementFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hidden"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"referencedIndexes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"SPOT"</span><span class="p">:</span><span class="w"> </span><span class="mi">30010</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"FAIR"</span><span class="p">:</span><span class="w"> </span><span class="mi">30030</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PREMIUM_1M"</span><span class="p">:</span><span class="w"> </span><span class="mi">30031</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"PREMIUM_AGGREGATE"</span><span class="p">:</span><span class="w"> </span><span class="mi">30032</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"MAX_PREMIUM_RATE"</span><span class="p">:</span><span class="w"> </span><span class="mi">30021</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"FUNDING_RATE_1M"</span><span class="p">:</span><span class="w"> </span><span class="mi">30033</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"FUNDING_RATE_AGGREGATE"</span><span class="p">:</span><span class="w"> </span><span class="mi">30034</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"LENDING_RATE_1D"</span><span class="p">:</span><span class="w"> </span><span class="mi">30020</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"margin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"riskLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maxQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">200000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bankruptcyPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"minimumMaintenanceMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">36432.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"realizedPNL"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.149223</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10010001017_16"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1700194217392</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>说明：</p>
+
+<ul>
+<li>消息类型：<code>CONTRACTS.POSITION_INfO_CHANGED</code></li>
 <li>是否需要认证：需要</li>
 </ul>
 <h1 id='20ff2c8e16'>资产中心</h1>
