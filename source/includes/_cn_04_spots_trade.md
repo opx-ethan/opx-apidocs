@@ -76,17 +76,18 @@ API路径：POST /v2/spots/orders
 
 API请求参数(Request Json Body)：
 
-| 参数          | 类型        | 说明                                                   |
-| :------------ | ----------- | ------------------------------------------------------ |
-| **symbol**    | **string**  | **必填**<br>交易对名称,例如`BTC_USDT`                  |
-| **type**      | **enum**    | **必填**<br/>订单类型：限价单="LIMIT"，市价单="MARKET" |
-| **direction** | **enum**    | **必填**<br/>订单方向：买入="LONG"，卖出="SHORT"       |
-| **price**     | **decimal** | **仅限限价单**<br/>订单价格，例如`7123.5`              |
-| **quantity**  | **decimal** | **必填**<br/>订单数量，例如`1.02`                      |
-| **fillOrKill**  | **boolean** | **非必填**<br/>是否FOK订单，例如`true`                      |
-| **immediateOrCancel**  | **boolean** | **非必填**<br/>是否IOC订单，例如`true`                      |
-| **postOnly**  | **boolean** | **必填**<br/>是否被动委托订单，例如`true`                      |
-| **hidden**  | **boolean** | **必填**<br/>是否冰山委托订单，例如`true`，冰山委托订单手续费率使用taker费率      |
+| 参数          | 类型        | 说明                                                     |
+| :------------ | ----------- |--------------------------------------------------------|
+| **symbol**    | **string**  | **必填**<br>交易对名称,例如`BTC_USDT`                           |
+| **type**      | **enum**    | **必填**<br/>订单类型：限价单="LIMIT"，市价单="MARKET"               |
+| **direction** | **enum**    | **必填**<br/>订单方向：买入="LONG"，卖出="SHORT"                   |
+| **price**     | **decimal** | **仅限限价单**<br/>订单价格，例如`7123.5`                          |
+| **quantity**  | **decimal** | **非必填**<br/>订单数量，例如`1.02`                              |
+ | **quoteOrderQty**|  **decimal** | **非必填**<br/>订单价值，例如`20000` 市价单买 可以指定订单价值               |
+| **fillOrKill**  | **boolean** | **非必填**<br/>是否FOK订单，例如`true`                           |
+| **immediateOrCancel**  | **boolean** | **非必填**<br/>是否IOC订单，例如`true`                           |
+| **postOnly**  | **boolean** | **必填**<br/>是否被动委托订单，例如`true`                           |
+| **hidden**  | **boolean** | **必填**<br/>是否冰山委托订单，例如`true`，冰山委托订单手续费率使用taker费率       |
 | **clientOrderId** | **string** | **选填**<br/>用户自定义OrderId，可用于订单查询、撤单。自定义OrderId 24小时内可用。 |
 
 
