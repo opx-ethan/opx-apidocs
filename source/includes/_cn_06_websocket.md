@@ -211,14 +211,6 @@ socket.onmessage = function (event) {
 
 服务器以固定频率推送全交易对市场价格摘要。首次订阅将返回所有交易对的价格摘要，后续会只推送有数据更新的交易对价格摘要。
 
-订阅：
-
-```json
-{
-    "action":"subscribe",
-    "topic":"ALL-TICKER"
-}
-```
 
 消息格式：
 
